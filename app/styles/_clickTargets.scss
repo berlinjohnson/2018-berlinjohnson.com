@@ -1,0 +1,22 @@
+// TABS
+nav button {
+  @extend %typography-base;
+  padding: 0 8px;
+  margin: 0 4px;
+  line-height: 36px;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  // transition: background-color 0.2s ease;
+
+  &:hover {
+    // background-color: rgba($secondary, 0.08);
+  }
+
+  &.is-selected {
+    color: $secondary;
+    font-weight: $semibold;
+    box-shadow: inset 0 -4px $secondary
+  }
+}

@@ -1,8 +1,9 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: $white;
-  font-family: 'Source Sans Pro', sans-serif;
+  background-color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, p {
@@ -12,4 +13,21 @@ h1, h2, h3, h4, h5, p {
 
 .is-hidden {
   display: none !important;
+}
+
+@mixin mobile($size) {
+  // max grid-width plus margin
+  $breakpointMedium: 784px + (2 * 16px);
+  $breakpointSmall: 656px;
+
+  @if $size == medium {
+    @media (max-width: $breakpointMedium) {
+      @content;
+    }
+  }
+  @else if $size == small {
+    @media (max-width: $breakpointSmall) {
+      @content;
+    }
+  }
 }

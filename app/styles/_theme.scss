@@ -1,3 +1,4 @@
+// COLOR VARIABLES
 $primary: #EB705E;
 $secondary: #636FA4;
 $accent: #42B7B7;
@@ -8,3 +9,103 @@ $border: rgba(0, 0, 0, 0.12);
 $grey: rgba(0, 0, 0, 0.04);
 
 $white: rgba(255, 255, 255, 1);
+
+// TYPOGRAPHY
+
+// FONTS
+$font-sans: 'Source Sans Pro', sans-serif;
+$font-script: 'Pacifico', sans-serif;
+
+// WEIGHTS
+$regular: 400;
+$semibold: 600;
+$bold: 700;
+
+// BASE
+%typography-base {
+  font-family: $font-sans;
+  color: $blackSecondary;
+  font-size: 16px;
+  font-weight: $regular;
+}
+
+// HEADINGS
+h1, h2, h3, h4, h5, p, .logo {
+  font-family: $font-sans;
+}
+
+h1 {
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 36px;
+  line-height: 96px;
+  font-weight: $bold;
+
+  &::first-letter {
+    color: $secondary;
+    font-size: 126px;
+    line-height: 160px;
+    text-decoration: underline;
+    padding-right: 4px;
+  }
+
+  @include mobile(small) {
+    display: none;
+  }
+}
+
+h2 {
+  color: $blackPrimary;
+  font-weight: $bold;
+  font-size: 36px;
+  line-height: 50px;
+}
+
+h3 {
+  color: $blackPrimary;
+  font-size: 20px;
+  font-weight: $regular;
+  line-height: 24px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+}
+
+// %primaryColored-text,
+h4 {
+  color: $primary;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: $semibold;
+  // @extend %primaryColored-text;
+}
+
+%secondaryColored-text,
+h5 {
+  color: $secondary;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: $semibold;
+}
+
+p {
+  @extend %typography-base;
+}
+
+
+.logo {
+  color: $blackSecondary;
+  font-size: 20px;
+  line-height: 56px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  span {
+    font-family: $font-script;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 1.2px;
+    color: $primary;
+    text-transform: lowercase;
+    padding-left: 8px;
+  }
+}
