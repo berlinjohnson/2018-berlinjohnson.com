@@ -42,5 +42,6 @@ $(function() {
   // TAB CLICKS
   $('#aboutNav').on('click', navigateTo);
   $('#portfolioNav').on('click', navigateTo);
+  $('#portfolioNavBtn').on('click', navigateTo);
   $('#resumeNav').on('click', navigateTo);
 });

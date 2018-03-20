@@ -39,13 +39,14 @@ h1, h2, h3, h4, h5, p, .logo {
 h1 {
   color: rgba(0, 0, 0, 0.2);
   font-size: 36px;
-  line-height: 96px;
+  line-height: 80px;
   font-weight: $bold;
+  margin-top: 40px;
 
   &::first-letter {
     color: $secondary;
     font-size: 126px;
-    line-height: 160px;
+    // line-height: 160px;
     text-decoration: underline;
     padding-right: 4px;
   }

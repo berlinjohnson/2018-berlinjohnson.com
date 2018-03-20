@@ -39,15 +39,6 @@ nav {
         width: 100%;
       }
     }
-
-
-    // &:first-child {
-    //   align-self:  flex-start;
-    // }
-    //
-    // &:last-child {
-    //   align-self:  flex-end;
-    // }
   }
 }
 
@@ -63,6 +54,8 @@ a.button {
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+
 
   &:hover {
     background-color: darken($primary, 4);
@@ -86,6 +79,7 @@ a.button {
     line-height: 20px;
     background-color: rgba($secondary, 0.12);
     padding: 0 8px;
+    margin: 4px;
 
     &:hover {
       background-color: rgba($secondary, 0.24);

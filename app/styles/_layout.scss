@@ -17,16 +17,23 @@ header {
 .content {
   max-width: 784px;
   margin: auto;
-  padding: 40px 16px;
+  padding: 0 32px 40px 32px;
+
+  @include mobile(small) {
+    padding: 0 16px 40px 16px;
+  }
 }
 
 section {
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.4s ease-in;
 }
 
 // common margin classes
-.margin-top-36 {
-  margin-top: 36px;
+.margin-top-40 {
+  margin-top: 40px;
+}
+.margin-top-32 {
+  margin-top: 32px;
 }
 .margin-top-24 {
   margin-top: 24px;
@@ -36,4 +43,39 @@ section {
 }
 .margin-top-8 {
   margin-top: 8px;
+}
+
+// ABOUT ME
+.skill-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.skill {
+  width: 360px;
+  display: flex;
+  align-items: center;
+  margin: 8px;
+
+  > div {
+    margin-top: 8px;
+  }
+
+  img {
+    height: 64px;
+    width: 64px;
+    padding-right: 16px;
+  }
+}
+
+.actions {
+  @include mobile(small) {
+    text-align: center;
+  }
+  .button {
+    margin: 4px;
+
+  }
 }
