@@ -15,8 +15,51 @@ nav button {
   }
 
   &.is-selected {
-    color: $secondary;
+    color: $secondaryText;
     font-weight: $semibold;
     box-shadow: inset 0 -4px $secondary
+  }
+}
+
+//BUTTONS
+a.button {
+  @extend %typography-base;
+  display: inline-block;
+  color: $white;
+  font-weight: $semibold;
+  line-height: 36px;
+  padding: 0 16px;
+  background-color: $primary;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary, 4);
+  }
+
+// OUTLINE BUTTONS
+  &.button-outline {
+    color: $primaryText;
+    box-shadow: inset 0 0 0 2px $primary;
+    background-color: inherit;
+
+    &:hover {
+      background-color: rgba($primary, 0.12);
+      color: darken($primaryText, 4);
+    }
+  }
+// BREADCRUMB BUTTONS
+  &.button-breadcrumb {
+    color: $secondaryText;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: rgba($secondary, 0.12);
+    padding: 0 8px;
+
+    &:hover {
+      background-color: rgba($secondary, 0.24);
+      // color: darken($primaryText, 4);
+    }
   }
 }
