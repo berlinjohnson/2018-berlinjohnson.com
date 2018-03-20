@@ -14,8 +14,14 @@ header {
   }
 }
 
+.content {
+  max-width: 784px;
+  margin: auto;
+  padding: 40px 16px;
+}
+
 section {
-  padding: 42px;
+  transition: opacity 0.6s ease-in;
 }
 
 // common margin classes
