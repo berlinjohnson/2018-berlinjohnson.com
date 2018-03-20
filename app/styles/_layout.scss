@@ -78,4 +78,17 @@ section {
     margin: 4px;
 
   }
+
+  a img {
+    height: 36px;
+    margin-top: 8px;
+    padding: 4px;
+    opacity: 0.24;
+
+    &:hover,
+    &:active {
+      opacity: 0.87;
+      transition: opacity 0.2 ease;
+    }
+  }
 }
