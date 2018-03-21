@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro:400,400i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Ali Berlin Johnson</title>
 
     <link rel="stylesheet" href="/styles.css">
@@ -19,13 +20,13 @@
       </nav>
     </header>
     <div class="content">
-      <!-- About me -->
+      <!-- ABOUT ME -->
       <section data-path="/" class="about is-hidden">
         <h1>About me</h1>
         <h3 class="margin-top-40">Ali Berlin Johnson</h3>
         <h2>I'm an illustrator, designer, and engineer.</h2>
         <p class="margin-top-32">
-          <b>UPDATE. THIS IS LAME.</b> With a degree in biomedical engineering and a passion for art &
+          <b>UGH I HATE WRITING BIOS. FIX THIS LATER.</b> With a degree in biomedical engineering and a passion for art &
           design, I enjoy combining creativity with science & technology.
           Being self-taught in many regards, I'm extrememly passionate about
           continuious learning.  I also really really love dogs.</p>
@@ -76,13 +77,12 @@
             <img src="/images/linkedin.png"></a>
         </div>
       </section>
-      <!-- Portfolio -->
+      <!-- PORTFOLIO -->
       <section data-path="/portfolio/" class="portfolio is-hidden">
         <h1>Portfolio</h1>
+        <div id="portfolio"></div>
 
-        <div id="projects"></div>
-
-        <script id="project-template" type="text/x-handlebars-template">
+        <script id="portfolio-template" type="text/x-handlebars-template">
           {{#each projects}}
           <div id="{{name}}" class="project margin-top-32">
             <div class="project-text">
@@ -95,16 +95,47 @@
               </h4>
               <p class="margin-top-16">{{description}}</p>
             </div>
-            <div class="project-preview">
-              <img src="/images/COVERplaceholder.png">
-              <a class="button button-outline margin-top-24">view project</a>
+            <div class="project-preview" >
+              <img data-path="/portfolio/{{name}}/"
+                class="viewProject cover" src="/images/COVERplaceholder.png">
+              <a data-path="/portfolio/{{name}}/"
+              class="viewProject button button-outline margin-top-24">view project</a>
             </div>
           </div>
           {{/each}}
         </script>
+      </section>
+      <!-- PORTFOLIO: Project -->
+      <section id="project" data-path="/portfolio/project/">
+
+        <script id="project-template" type="text/x-handlebars-template">
+          <div class="breadcrumbs  margin-top-24">
+            <a id="portfolioCrumb" data-path="/portfolio/"
+              class="button button-breadcrumb">all projects
+            </a>
+          </div>
+
+          <div class="project projectView">
+            <div class="project-text">
+              <h2>{{#spacify name}}{{/spacify}}</h2>
+              <h4>
+                {{#each role}}
+                  {{#if @first}}{{this}}
+                  {{else}} • {{this}}{{/if}}
+                {{/each}}
+              </h4>
+              <p class="margin-top-16">{{description}}</p>
+            </div>
+            <div class="project-gallery margin-top-40" >
+              {{#each pieces}}
+                <img data-path="/portfolio/{{name}}/"
+                  class="viewProject" src="/images/projects/{{../name}}/{{this}}">
+              {{/each}}
+            </div>
+        </script>
 
       </section>
-      <!-- Resume -->
+      <!-- RESUME -->
       <section data-path="/resume/" class="resume is-hidden">
         <h1>Resume</h1>
       </section>

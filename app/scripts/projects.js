@@ -15,10 +15,7 @@ var projects = [
     "role": ["mind reader","hot chocolate drinker"],
     "description": "another project _wow",
     "pieces": [
-      "landscape.png",
-      "portrait.png",
-      "smol_guy.png",
-      "gif.gif"
+      "avatar.png"
     ]
   }
 ];

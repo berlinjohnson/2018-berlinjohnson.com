@@ -80,10 +80,41 @@ a.button {
     background-color: rgba($secondary, 0.12);
     padding: 0 8px;
     margin: 4px;
+    // flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0px;
 
     &:hover {
       background-color: rgba($secondary, 0.24);
       // color: darken($primaryText, 4);
+    }
+  }
+}
+
+// BREADCRUMB GROUP
+.breadcrumbs {
+  display: flex;
+  // width: 100%;
+  .button-breadcrumb:first-child {
+    position: relative;
+    overflow: visible;
+    flex-shrink: 0;
+
+    &:before {
+      @extend %material-icon;
+      font-size: 16px;
+      line-height: 20px;
+      position: absolute;
+      content: 'arrow_back';
+      padding: 8px;
+      left: -32px;
+      top: -8px;
+
+    }
+    @include mobile(medium) {
+      margin-left: 24px;
     }
   }
 }

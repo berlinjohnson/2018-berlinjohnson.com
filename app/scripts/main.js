@@ -2,6 +2,9 @@ var Handlebars = require('handlebars');
 var $ = require('jquery');
 var projects = require('./projects');
 
+var portfolioSource = $("#portfolio-template").html();
+var portfolioTemplate = Handlebars.compile(portfolioSource);
+
 var projectSource = $("#project-template").html();
 var projectTemplate = Handlebars.compile(projectSource);
 
@@ -26,16 +29,21 @@ var init = function() {
   $('#portfolioNav').on('click', navigateTo);
   $('#portfolioBtn').on('click', navigateTo);
   $('#resumeNav').on('click', navigateTo);
+  $('section.portfolio').on('click', '.viewProject', navigateTo);
+  $('#project').on('click', '#portfolioCrumb', navigateTo);
+
 }
 
 // -------------------- NAV BAR --------------------
 var navigateTo = function(e) {
   e.preventDefault;
 
-  var path = $(this).data('path');
+  var path = $(this).attr('data-path');
   if (location.pathname === path) {
     return;
   };
+
+  console.log(path);
 
   // Update url path
   history.pushState({}, '', path);
@@ -47,26 +55,44 @@ var showSection = function(path) {
   var page = pathArray[0] || 'about';
   var project = pathArray[1];
   var piece = pathArray[2];
-  // console.log(page);
 
-  // Switch tab highlighed
-  $('nav button[data-path!="' + path + '"]').removeClass('is-selected').blur();
-  $('nav button[data-path="' + path + '"]').addClass('is-selected');
+  updateTabs(page);
 
   // Switch section shown
   $('section').addClass('is-hidden');
-  if (page == 'portfolio') {
+  if (piece) {
+    // showPiece();
+  }
+  else if (project) {
+    $('#project').attr("data-path", path);
+    showProject(project);
+  }
+  else if (page == 'portfolio') {
     showPortfolio();
   }
   $('section[data-path="' + path + '"]').removeClass('is-hidden');
 };
 
-var showPortfolio = function() {
-  $('#projects').html('');
-  var projectList = projectTemplate({"projects": projects});
-  $('#projects').html(projectList);
-  // console.log(projects);
+var updateTabs = function(page) {
+  var path = "/"
+  if (page != "about") {
+    path = "/" + page + "/";
+  }
+  $('nav button[data-path!="' + path + '"]').removeClass('is-selected').blur();
+  $('nav button[data-path="' + path + '"]').addClass('is-selected');
+}
 
+var showPortfolio = function() {
+  $('#portfolio').html('');
+  var projectList = portfolioTemplate({"projects": projects});
+  $('#portfolio').html(projectList);
+}
+
+var showProject = function(projectName) {
+  $('#project').html('');
+  var project = projects.filter(x => x.name == projectName)[0];
+  var projectObj = projectTemplate(project);
+  $('#project').html(projectObj);
 }
 
 // ----------------Handlebar helpers -----------------

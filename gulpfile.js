@@ -59,7 +59,8 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAsse
             baseDir: "./build/",
             routes: {
               "/portfolio": "./build/",
-              "/portfolio/firebase": "./build/"
+              "/portfolio/test_project/": "./build/",
+              "/portfolio/project2/": "./build/"
             }
         },
         open: false
