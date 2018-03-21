@@ -15,7 +15,7 @@ header {
 }
 
 .content {
-  max-width: 784px;
+  max-width: $maxWidth;
   margin: auto;
   padding: 0 32px 40px 32px;
 
@@ -45,7 +45,7 @@ section {
   margin-top: 8px;
 }
 
-// ABOUT ME
+// ABOUT ME ------------
 .skill-group {
   display: flex;
   flex-wrap: wrap;
@@ -79,16 +79,64 @@ section {
 
   }
 
-  a img {
+  &.social-media img {
     height: 36px;
     margin-top: 8px;
     padding: 4px;
     opacity: 0.24;
 
-    &:hover,
-    &:active {
+    &:hover {
       opacity: 0.87;
       transition: opacity 0.2 ease;
+    }
+  }
+}
+
+// Portfolio ------------
+$coverImageWidth: 464px;
+
+.project {
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: $border 1px solid;
+  padding: 32px 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .project-text {
+    padding-bottom: 16px;
+    max-width: $maxWidth - $coverImageWidth - 16px;
+  }
+
+  .project-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  img {
+    // height: 144px;
+    max-width: $coverImageWidth;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  @include mobile(medium) {
+    flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+
+    .project-text {
+      // flex-grow: 1;
+      max-width: none;
+      // text-align: center;
+    }
+    .project-preview {
+      align-items: center;
     }
   }
 }

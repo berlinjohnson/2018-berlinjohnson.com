@@ -56,7 +56,10 @@ gulp.task('clean', function() {
 gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAssets'], function() {
     browserSync.init({
         server: {
-            baseDir: "./build/"
+            baseDir: "./build/",
+            routes: {
+              "/portfolio": "./build/"
+            }
         },
         open: false
     });

@@ -39,7 +39,8 @@ $(function() {
   // First page load
   showSection(location.pathname);
 
-  // TAB CLICKS
+// NAVIGATION CLICKS
+  $('#homeBtn').on('click', navigateTo);
   $('#aboutNav').on('click', navigateTo);
   $('#portfolioNav').on('click', navigateTo);
   $('#portfolioNavBtn').on('click', navigateTo);

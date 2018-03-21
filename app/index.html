@@ -11,16 +11,16 @@
   </head>
   <body>
     <header>
-      <div class="logo">made by<span>ali</span></div>
+      <a id="homeBtn" data-path="/" class="logo">made by<span>ali</span></a>
       <nav>
-        <button id="aboutNav"class="is-selected" data-path="/">about me</button>
+        <button id="aboutNav" data-path="/">about me</button>
         <button id="portfolioNav" data-path="/portfolio/">portfolio</button>
         <button id="resumeNav" data-path="/resume/">resume</button>
       </nav>
     </header>
     <div class="content">
       <!-- About me -->
-      <section data-path="/" class="about">
+      <section data-path="/" class="about is-hidden">
         <h1>About me</h1>
         <h3 class="margin-top-40">Ali Berlin Johnson</h3>
         <h2>I'm an illustrator, designer, and engineer.</h2>
@@ -63,7 +63,7 @@
           <a id="portfolioNavBtn" data-path="/portfolio/" class="button">view portfolio</a>
           <a id="contactBtn" class="button button-outline">Get in touch</a>
         </div>
-        <div class="actions">
+        <div class="actions social-media">
           <a class="twitter" href="https://www.twitter.com/berlinjohnson">
             <img src="/images/twitter.png"></a>
           <a class="twitter" href="https://www.instagram.com/berlinjohnson">
@@ -79,6 +79,29 @@
       <!-- Portfolio -->
       <section data-path="/portfolio/" class="portfolio is-hidden">
         <h1>Portfolio</h1>
+        <div class="project margin-top-32">
+          <div class="project-text">
+            <h2>Project title</h2>
+            <h4>role role role</h4>
+            <p class="margin-top-16">description </p>
+          </div>
+          <div class="project-preview">
+            <img src="/images/COVERplaceholder.png">
+            <a class="button button-outline margin-top-24">view project</a>
+          </div>
+        </div>
+        <div class="project margin-top-32">
+          <div class="project-text">
+            <h2>Project title</h2>
+            <h4>role role role</h4>
+            <p class="margin-top-16">Evolved the Firebase brand to represent
+              a complete app platform and fit within the Google product family</p>
+          </div>
+          <div class="project-preview">
+            <img src="/images/COVERplaceholder.png">
+            <a class="button button-outline margin-top-24">view project</a>
+          </div>
+        </div>
       </section>
       <!-- Resume -->
       <section data-path="/resume/" class="resume is-hidden">

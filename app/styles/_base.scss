@@ -1,3 +1,6 @@
+// max grid-width
+$maxWidth: 784px;
+
 body, html {
   margin: 0;
   padding: 0;
@@ -19,8 +22,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 @mixin mobile($size) {
-  // max grid-width plus margin
-  $breakpointMedium: 784px + (2 * 16px);
+  $breakpointMedium: $maxWidth + (2 * 32px);
   $breakpointSmall: 656px;
 
   @if $size == medium {
