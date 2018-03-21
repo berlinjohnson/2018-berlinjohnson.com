@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="actions margin-top-40">
-          <a id="portfolioNavBtn" data-path="/portfolio/" class="button">view portfolio</a>
+          <a id="portfolioBtn" data-path="/portfolio/" class="button">view portfolio</a>
           <a id="contactBtn" class="button button-outline">Get in touch</a>
         </div>
         <div class="actions social-media">
@@ -79,29 +79,30 @@
       <!-- Portfolio -->
       <section data-path="/portfolio/" class="portfolio is-hidden">
         <h1>Portfolio</h1>
-        <div class="project margin-top-32">
-          <div class="project-text">
-            <h2>Project title</h2>
-            <h4>role role role</h4>
-            <p class="margin-top-16">description </p>
+
+        <div id="projects"></div>
+
+        <script id="project-template" type="text/x-handlebars-template">
+          {{#each projects}}
+          <div id="{{name}}" class="project margin-top-32">
+            <div class="project-text">
+              <h2>{{#spacify name}}{{/spacify}}</h2>
+              <h4>
+                {{#each role}}
+                  {{#if @first}}{{this}}
+                  {{else}} • {{this}}{{/if}}
+                {{/each}}
+              </h4>
+              <p class="margin-top-16">{{description}}</p>
+            </div>
+            <div class="project-preview">
+              <img src="/images/COVERplaceholder.png">
+              <a class="button button-outline margin-top-24">view project</a>
+            </div>
           </div>
-          <div class="project-preview">
-            <img src="/images/COVERplaceholder.png">
-            <a class="button button-outline margin-top-24">view project</a>
-          </div>
-        </div>
-        <div class="project margin-top-32">
-          <div class="project-text">
-            <h2>Project title</h2>
-            <h4>role role role</h4>
-            <p class="margin-top-16">Evolved the Firebase brand to represent
-              a complete app platform and fit within the Google product family</p>
-          </div>
-          <div class="project-preview">
-            <img src="/images/COVERplaceholder.png">
-            <a class="button button-outline margin-top-24">view project</a>
-          </div>
-        </div>
+          {{/each}}
+        </script>
+
       </section>
       <!-- Resume -->
       <section data-path="/resume/" class="resume is-hidden">

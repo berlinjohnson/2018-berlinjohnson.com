@@ -110,6 +110,14 @@ $coverImageWidth: 464px;
   .project-text {
     padding-bottom: 16px;
     max-width: $maxWidth - $coverImageWidth - 16px;
+
+    h2 {
+      text-transform: uppercase;
+    }
+
+    h4 {
+      text-transform: lowercase;
+    }
   }
 
   .project-preview {
@@ -127,14 +135,11 @@ $coverImageWidth: 464px;
 
   @include mobile(medium) {
     flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
 
     .project-text {
-      // flex-grow: 1;
       max-width: none;
-      // text-align: center;
     }
+
     .project-preview {
       align-items: center;
     }
