@@ -62,8 +62,6 @@ var showSection = function(path) {
   // Switch section shown
   $('section').addClass('is-hidden');
   if (piece) {
-    console.log("piece!");
-    console.log(path);
     $('#piece').attr("data-path", path);
     showPiece(project, piece);
   }
@@ -105,7 +103,6 @@ var showPiece = function(projectName, pieceName) {
   var allPieces = [].concat(...project.rows);
   var piece = allPieces.filter(x => x.startsWith(pieceName + '-'))[0];
   var pieceObj = pieceTemplate({"project": projectName, "piece": piece});
-  console.log(pieceObj);
   $('#piece').html(pieceObj);
 }
 // ----------------Handlebar helpers -----------------

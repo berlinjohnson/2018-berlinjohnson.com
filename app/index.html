@@ -141,7 +141,7 @@
         </script>
       </section>
       <!-- PORTFOLIO: Piece -->
-      <section id="piece" data-path="/portfolio/project/piece">
+      <section id="piece" class="piece" data-path="/portfolio/project/piece">
         <script id="piece-template" type="text/x-handlebars-template">
           <div class="breadcrumbs  margin-top-24">
             <a data-path="/portfolio/"
@@ -154,7 +154,7 @@
           <div class="project-text margin-top-16" >
             <h2>{{#nameOnly piece}}{{/nameOnly}}</h2>
           </div>
-          <div class="project-gallery piece-view">
+          <div class="project-gallery">
             <div class="gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
             <img class="viewPiece" src="/images/projects/{{project}}/{{piece}}">
             </div>
@@ -165,8 +165,6 @@
           </div>
         </script>
       </section>
-
-
       <!-- RESUME -->
       <section data-path="/resume/" class="resume is-hidden">
         <h1>Resume</h1>
