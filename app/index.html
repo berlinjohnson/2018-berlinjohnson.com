@@ -126,20 +126,15 @@
               </h4>
               <p class="margin-top-16">{{description}}</p>
             </div>
-            <div class="project-gallery project-gallery-row margin-top-40" >
-              {{#each pieces}}
+            {{#each rows as |row|}}
+            <div class="project-gallery project-gallery-row">
+              {{#each row as |piece|}}
               <div class="gallery-image-1x1">
-              <img class="viewProject" data-sizes="auto" src="/images/projects/{{../name}}/{{this.name}}">
+              <img class="viewProject" data-sizes="auto" src="/images/projects/{{@root.name}}/{{piece}}">
               </div>
               {{/each}}
-              <!-- {{#each gallery}}
-                <div class="gallery-row">
-                {{#each this}}
-                  <img src="/images/projects/{{../../name}}/{{this.name}}" height="{{this.newHeight}}" width="{{this.newWidth}}">
-                {{/each}}
-                </div>
-              {{/each}} -->
             </div>
+            {{/each}}
         </script>
 
       </section>

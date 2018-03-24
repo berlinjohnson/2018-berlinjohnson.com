@@ -49,18 +49,12 @@ gulp.task('otherAssets', function() {
                 .pipe(browserSync.stream());
 });
 
-gulp.task('makeProjectFile', function(cb) {
-  var spawn = process.spawn;
-  var PIPE = {stdio: 'inherit'};
-  spawn('python', ['./app/process_images.py'], PIPE).on('close', cb);
-});
-
 gulp.task('clean', function() {
   return del.sync('build/*');
 })
 
 // DEFAULT / STATIC SERVER
-gulp.task('default', ['clean', 'makeProjectFile', 'html', 'styles', 'scripts', 'images', 'otherAssets'], function() {
+gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAssets'], function() {
     browserSync.init({
         server: {
             baseDir: "./build/",
@@ -78,5 +72,4 @@ gulp.task('default', ['clean', 'makeProjectFile', 'html', 'styles', 'scripts', '
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch(otherAssets, ['otherAssets']);
-    gulp.watch(['app/images/projects/**/*', 'app/process_images.py'], ['makeProjectFile']);
 });
