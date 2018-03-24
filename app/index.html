@@ -86,7 +86,7 @@
           {{#each projects}}
           <div id="{{name}}" class="project margin-top-32">
             <div class="project-text">
-              <h2>{{#spacify name}}{{/spacify}}</h2>
+              <h2>{{#nameOnly name}}{{/nameOnly}}</h2>
               <h4>
                 {{#each role}}
                   {{#if @first}}{{this}}
@@ -117,7 +117,7 @@
 
           <div class="project projectView">
             <div class="project-text">
-              <h2>{{#spacify name}}{{/spacify}}</h2>
+              <h2>{{#nameOnly name}}{{/nameOnly}}</h2>
               <h4>
                 {{#each role}}
                   {{#if @first}}{{this}}
@@ -126,15 +126,18 @@
               </h4>
               <p class="margin-top-16">{{description}}</p>
             </div>
-            {{#each rows as |row|}}
-            <div class="project-gallery project-gallery-row">
-              {{#each row as |piece|}}
-              <div class="gallery-image-1x1">
-              <img class="viewProject" data-sizes="auto" src="/images/projects/{{@root.name}}/{{piece}}">
+            <div class="project-gallery">
+              {{#each rows as |row|}}
+              <div class="project-gallery-row">
+                {{#each row as |piece|}}
+                <div class="gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
+                <img class="viewProject" data-sizes="auto" src="/images/projects/{{@root.name}}/{{piece}}">
+                </div>
+                {{/each}}
               </div>
               {{/each}}
             </div>
-            {{/each}}
+          </div>
         </script>
 
       </section>

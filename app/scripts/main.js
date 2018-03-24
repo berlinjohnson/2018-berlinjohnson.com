@@ -98,6 +98,21 @@ var aspectRatio = function(piece) {
 }
 
 // ----------------Handlebar helpers -----------------
-Handlebars.registerHelper('spacify', function(x) {
-  return x.replace(/_/g," ");
+// Both assumes naming format:
+// this_is_the_name-ratio.filetype
+
+Handlebars.registerHelper('nameOnly', function(x) {
+  // this_is_the_name-ratio.filetype --> this_is_the_name
+  var item_name = x.split('-')[0];
+  // this_is_the_name --> this is the name
+  var spacify = item_name.replace(/_/g," ");
+  return spacify;
+});
+
+Handlebars.registerHelper('ratioOnly', function(x) {
+  // this_is_the_name-ratio.filetype --> ratio.filetype
+  var fileRatio = x.split('-')[1];
+  // ratio.filetype --> ratio
+  var ratio = fileRatio.split('.')[0];
+  return ratio;
 });
