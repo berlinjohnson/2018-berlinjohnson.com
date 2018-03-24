@@ -61,7 +61,8 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAsse
             routes: {
               "/portfolio": "./build/",
               "/portfolio/test_project/": "./build/",
-              "/portfolio/project2/": "./build/"
+              "/portfolio/firebase_branding/": "./build/",
+              "/portfolio/firebase_branding/logo": "./build/"
             }
         },
         open: false

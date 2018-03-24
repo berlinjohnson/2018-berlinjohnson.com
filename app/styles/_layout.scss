@@ -107,16 +107,17 @@ $coverImageWidth: 464px;
     border-bottom: none;
   }
 
-  .project-text {
-    padding-bottom: 16px;
+}
 
-    h2 {
-      text-transform: uppercase;
-    }
+.project-text {
+  padding-bottom: 16px;
 
-    h4 {
-      text-transform: lowercase;
-    }
+  h2 {
+    text-transform: uppercase;
+  }
+
+  h4 {
+    text-transform: lowercase;
   }
 }
 
@@ -191,11 +192,18 @@ $smallMargin: 4px;
       margin: 0 $smallMargin/2;
     }
 
-     img {
-       width: 100%;
-
-       height: auto;
-     }
-
+    img {
+      width: 100%;
+      height: auto;
+      // cursor: pointer;
+    }
   }
+}
+
+.thumbnail {
+  cursor: pointer;
+}
+
+.project-gallery .piece-view {
+
 }

@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="actions margin-top-40">
-          <a id="portfolioBtn" data-path="/portfolio/" class="button">view portfolio</a>
+          <a data-path="/portfolio/" class="viewPortfolio button">view portfolio</a>
           <a id="contactBtn" class="button button-outline">Get in touch</a>
         </div>
         <div class="actions social-media">
@@ -107,11 +107,10 @@
       </section>
       <!-- PORTFOLIO: Project -->
       <section id="project" data-path="/portfolio/project/">
-
         <script id="project-template" type="text/x-handlebars-template">
           <div class="breadcrumbs  margin-top-24">
-            <a id="portfolioCrumb" data-path="/portfolio/"
-              class="button button-breadcrumb">all projects
+            <a data-path="/portfolio/"
+              class="viewPortfolio button button-breadcrumb">all projects
             </a>
           </div>
 
@@ -130,8 +129,9 @@
               {{#each rows as |row|}}
               <div class="project-gallery-row">
                 {{#each row as |piece|}}
-                <div class="gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
-                <img class="viewProject" data-sizes="auto" src="/images/projects/{{@root.name}}/{{piece}}">
+                <div class="thumbnail gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
+                <img class="viewPiece" data-path="/portfolio/{{@root.name}}/{{#pathOnly piece}}{{/pathOnly}}/"
+                     src="/images/projects/{{@root.name}}/{{piece}}">
                 </div>
                 {{/each}}
               </div>
@@ -139,8 +139,34 @@
             </div>
           </div>
         </script>
-
       </section>
+      <!-- PORTFOLIO: Piece -->
+      <section id="piece" data-path="/portfolio/project/piece">
+        <script id="piece-template" type="text/x-handlebars-template">
+          <div class="breadcrumbs  margin-top-24">
+            <a data-path="/portfolio/"
+              class="viewPortfolio button button-breadcrumb">all projects
+            </a>
+            <a data-path="/portfolio/{{project}}/"
+              class="viewProject button button-breadcrumb">{{#nameOnly project}}{{/nameOnly}}
+            </a>
+          </div>
+          <div class="project-text margin-top-16" >
+            <h2>{{#nameOnly piece}}{{/nameOnly}}</h2>
+          </div>
+          <div class="project-gallery piece-view">
+            <div class="gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
+            <img class="viewPiece" src="/images/projects/{{project}}/{{piece}}">
+            </div>
+          </div>
+          <div class="pagination margin-top-40">
+            <a id="prevPiece" class="button button-outline">previous</a>
+            <a id="nextPiece" class="button">next</a>
+          </div>
+        </script>
+      </section>
+
+
       <!-- RESUME -->
       <section data-path="/resume/" class="resume is-hidden">
         <h1>Resume</h1>

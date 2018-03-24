@@ -8,6 +8,9 @@ var portfolioTemplate = Handlebars.compile(portfolioSource);
 var projectSource = $("#project-template").html();
 var projectTemplate = Handlebars.compile(projectSource);
 
+var pieceSource = $("#piece-template").html();
+var pieceTemplate = Handlebars.compile(pieceSource);
+
 // -------------------- ON READY --------------------
 $(function() {
   init();
@@ -27,10 +30,10 @@ var init = function() {
   $('#homeBtn').on('click', navigateTo);
   $('#aboutNav').on('click', navigateTo);
   $('#portfolioNav').on('click', navigateTo);
-  $('#portfolioBtn').on('click', navigateTo);
   $('#resumeNav').on('click', navigateTo);
-  $('section.portfolio').on('click', '.viewProject', navigateTo);
-  $('#project').on('click', '#portfolioCrumb', navigateTo);
+  $('section').on('click', '.viewPortfolio', navigateTo);
+  $('section').on('click', '.viewProject', navigateTo);
+  $('section').on('click', '.viewPiece', navigateTo);
 
 }
 
@@ -59,7 +62,10 @@ var showSection = function(path) {
   // Switch section shown
   $('section').addClass('is-hidden');
   if (piece) {
-    // showPiece();
+    console.log("piece!");
+    console.log(path);
+    $('#piece').attr("data-path", path);
+    showPiece(project, piece);
   }
   else if (project) {
     $('#project').attr("data-path", path);
@@ -93,10 +99,15 @@ var showProject = function(projectName) {
   $('#project').html(projectObj);
 }
 
-var aspectRatio = function(piece) {
-  return piece.width / piece.height;
+var showPiece = function(projectName, pieceName) {
+  $('#piece').html('');
+  var project = projects.filter(x => x.name == projectName)[0];
+  var allPieces = [].concat(...project.rows);
+  var piece = allPieces.filter(x => x.startsWith(pieceName + '-'))[0];
+  var pieceObj = pieceTemplate({"project": projectName, "piece": piece});
+  console.log(pieceObj);
+  $('#piece').html(pieceObj);
 }
-
 // ----------------Handlebar helpers -----------------
 // Both assumes naming format:
 // this_is_the_name-ratio.filetype
@@ -115,4 +126,10 @@ Handlebars.registerHelper('ratioOnly', function(x) {
   // ratio.filetype --> ratio
   var ratio = fileRatio.split('.')[0];
   return ratio;
+});
+
+Handlebars.registerHelper('pathOnly', function(x) {
+  // this_is_the_name-ratio.filetype --> this_is_the_name
+  var path_name = x.split('-')[0];
+  return path_name;
 });
