@@ -126,11 +126,19 @@
               </h4>
               <p class="margin-top-16">{{description}}</p>
             </div>
-            <div class="project-gallery margin-top-40" >
+            <div class="project-gallery project-gallery-row margin-top-40" >
               {{#each pieces}}
-                <img data-path="/portfolio/{{name}}/"
-                  class="viewProject" src="/images/projects/{{../name}}/{{this}}">
+              <div class="gallery-image-1x1">
+              <img class="viewProject" data-sizes="auto" src="/images/projects/{{../name}}/{{this.name}}">
+              </div>
               {{/each}}
+              <!-- {{#each gallery}}
+                <div class="gallery-row">
+                {{#each this}}
+                  <img src="/images/projects/{{../../name}}/{{this.name}}" height="{{this.newHeight}}" width="{{this.newWidth}}">
+                {{/each}}
+                </div>
+              {{/each}} -->
             </div>
         </script>
 
