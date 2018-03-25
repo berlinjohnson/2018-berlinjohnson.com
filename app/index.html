@@ -140,16 +140,16 @@
             </div>
             <div class="pagination margin-top-16">
               <div class="project-wrapper">
-                <a class="viewProject button button-outline" data-path="/portfolio/{{pagination.prevProject}}/">
+                <a class="viewProject button button-outline" data-path="/portfolio/{{pagination.project.prev}}/">
                   prev project
                 </a>
-                <p>{{#nameOnly pagination.prevProject}}{{/nameOnly}}</p>
+                <p>{{#nameOnly pagination.project.prev}}{{/nameOnly}}</p>
               </div>
               <div class="project-wrapper">
-                <a class="viewProject button" data-path="/portfolio/{{pagination.nextProject}}/">
+                <a class="viewProject button" data-path="/portfolio/{{pagination.project.next}}/">
                   next project
                 </a>
-                <p>{{#nameOnly pagination.nextProject}}{{/nameOnly}}</p>
+                <p>{{#nameOnly pagination.project.next}}{{/nameOnly}}</p>
               </div>
             </div>
           </div>
@@ -175,18 +175,12 @@
 
           <div class="pagination margin-top-16">
             <!-- IF THERE IS A NEXT PIECE -->
-            {{#if pagination.nextPiece}}
-              <div class="project-wrapper">
-                {{#unless pagination.prevPiece}}
-                <a class="viewProject button button-outline" data-path="/portfolio/{{project}}/">
-                  back to project
-                </a>
-                {{/unless}}
-              </div>
+            {{#if pagination.piece.next}}
+              <div class="project-wrapper"></div>
               <div class="piece-wrapper">
-                {{#if pagination.prevPiece}}
+                {{#if pagination.piece.prev}}
                 <a class="viewPiece button button-outline button-icon"
-                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.prevPiece}}{{/pathOnly}}/">
+                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.piece.prev}}{{/pathOnly}}/">
                   <i class="material-icons">arrow_back</i>
                 </a>
                 {{else}}
@@ -195,32 +189,31 @@
                 </a>
                 {{/if}}
                 <a class="viewPiece button button-outline button-icon"
-                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.nextPiece}}{{/pathOnly}}/">
+                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.piece.next}}{{/pathOnly}}/">
                   <i class="material-icons">arrow_forward</i>
                 </a>
-              <p>{{pagination.currentPiece}}/{{pagination.totalPieces}}</p>
+              <p>{{pagination.piece.currentNum}}/{{pagination.piece.totalNum}}</p>
               </div>
-              {{#if pagination.prevPiece}}
               <div class="project-wrapper"></div>
-              {{/if}}
+
             <!-- ELSE LAST PIECE IN PROJECT -->
             {{else}}
               <div class="piece-wrapper">
                 <a class="viewPiece button button-outline button-icon"
-                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.prevPiece}}{{/pathOnly}}/">
+                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.piece.prev}}{{/pathOnly}}/">
                   <i class="material-icons">arrow_back</i>
                 </a>
                 <a class="is-disabled button button-outline button-icon">
                   <i class="material-icons">arrow_forward</i>
                 </a>
 
-              <p>{{pagination.currentPiece}}/{{pagination.totalPieces}}</p>
+              <p>{{pagination.piece.currentNum}}/{{pagination.piece.totalNum}}</p>
               </div>
               <div class="project-wrapper">
-                <a class="viewProject button" data-path="/portfolio/{{pagination.nextProject}}/">
+                <a class="viewProject button" data-path="/portfolio/{{pagination.project.next}}/">
                   next project
                 </a>
-                <p>{{#nameOnly pagination.nextProject}}{{/nameOnly}}</p>
+                <p>{{#nameOnly pagination.project.next}}{{/nameOnly}}</p>
               </div>
             {{/if}}
 

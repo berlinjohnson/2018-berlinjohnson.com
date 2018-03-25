@@ -1,5 +1,6 @@
 var Handlebars = require('handlebars');
 var $ = require('jquery');
+var pages = ['about', 'portfolio', 'resume'];
 var projects = require('./projects');
 
 var portfolioSource = $("#portfolio-template").html();
@@ -34,6 +35,45 @@ var init = function() {
   $('section').on('click', '.viewPortfolio', navigateTo);
   $('section').on('click', '.viewProject', navigateTo);
   $('section').on('click', '.viewPiece', navigateTo);
+
+  //Arrow key navigation
+  $(document).keyup(function(e) {
+    e.preventDefault;
+    var currentLocation = getCurrentLocation();
+    var pagination = getPaginationPaths();
+    var next;
+    var prev;
+    // console.log(pagination);
+    if (currentLocation.piece) {
+      if (pagination.nextPiece){
+        next = pagination.nextPiece;
+      }
+      else {
+        next = pagination.nextProject;
+      }
+      if (pagination.prevPiece){
+        next = pagination.prevPiece;
+      }
+      else {
+        next = pagination.prevProject;
+      }
+    }
+    else if (currentLocation.project) {
+
+    }
+    else {
+      next = pagination.nextPage;
+      prev = pagination.prevPage;
+
+    }
+
+    // if (e.key == "ArrowRight") {
+    //   console.log("Next is: " + next)
+    // }
+    // else if (e.key == "ArrowLeft") {
+    //   console.log("Previous is: " + prev)
+    // }
+  });
 }
 
 // -------------------- NAV BAR --------------------
@@ -47,18 +87,17 @@ var navigateTo = function(e) {
 
   // Update url path
   history.pushState({}, '', path);
-  console.log(path);
   showSection(path);
 };
 
 var showSection = function(path) {
-  var pathArray = path.split('/').filter(x => x != "");
-  var page = pathArray[0] || 'about';
-  var project = pathArray[1];
-  var piece = pathArray[2];
+  var currentPath = getCurrentLocation();
+
+  var page = currentPath.page;
+  var project = currentPath.project;
+  var piece = currentPath.piece;
 
   updateTabs(page);
-
   // Switch section shown
   $('section').addClass('is-hidden');
   if (piece) {
@@ -92,8 +131,8 @@ var showPortfolio = function() {
 
 var showProject = function(projectName) {
   $('#project').html('');
-  var project = projects.filter(x => x.name == projectName)[0];
-  var pagination = getPaginationPaths(project);
+  var project = getProjectObject(projectName);
+  var pagination = getPaginationPaths();
   var projectObj = projectTemplate({"project": project, "pagination": pagination});
   $('#project').html(projectObj);
 
@@ -101,68 +140,99 @@ var showProject = function(projectName) {
 
 var showPiece = function(projectName, pieceName) {
   $('#piece').html('');
-  var project = projects.filter(x => x.name == projectName)[0];
-  var allPieces = [].concat(...project.rows);
-  var piece = allPieces.filter(x => x.startsWith(pieceName + '-'))[0];
-  var pagination = getPaginationPaths(project, piece);
+  var project = getProjectObject(projectName);
+  var piece = getFullPieceName(project, pieceName);
+  var pagination = getPaginationPaths();
 
   var pieceObj = pieceTemplate({"project": projectName, "piece": piece, "pagination": pagination});
   $('#piece').html(pieceObj);
 }
 
-var getPaginationPaths = function(project, piece) {
-  // console.log(project, piece);
+var getCurrentLocation = function() {
+  var currentPath = {
+    page: "",
+    project: "",
+    piece: ""
+  }
+
+  var pathArray = location.pathname.split('/').filter(x => x != "");
+  currentPath.page = pathArray[0] || 'about';
+  currentPath.project = pathArray[1];
+  currentPath.piece = pathArray[2];
+
+  return currentPath;
+}
+
+var getProjectObject = function(projectName) {
+  return projects.filter(x => x.name == projectName)[0];
+}
+
+var getFullPieceName = function(projectObj, pieceName) {
+  var allPieces = [].concat(...projectObj.rows);
+  return allPieces.filter(x => x.startsWith(pieceName + '-'))[0];
+}
+
+var getPaginationPaths = function() {
+  var currentLocation = getCurrentLocation();
+  // var pagination = {
+  //   nextPage: "",
+  //   prevPage: "",
+  //   nextProject: "",
+  //   prevProject: "",
+  //   nextPiece: "",
+  //   prevPiece: "",
+  //   currentPiece: "",
+  //   totalPieces: ""
+  // }
 
   var pagination = {
-    nextProject: "",
-    prevProject: "",
-    nextPiece: "",
-    prevPiece: "",
-    currentPiece: "",
-    totalPieces: ""
+    page: {prev: "", next: ""},
+    project: {prev: "", next: ""},
+    piece: {prev: "", next: "", totalNum: "", currentNum: ""}
   }
 
-  var totalProjects = projects.length;
-  var projectIndex = projects.indexOf(project);
+  // PAGES
 
-  // last project
-  if (projectIndex == totalProjects - 1) {
-    pagination.prevProject = projects[projectIndex - 1].name;
-    pagination.nextProject = projects[0].name;
-  }
-  // first project
-  else if (projectIndex == 0) {
-    pagination.prevProject = projects[totalProjects - 1].name;
-    pagination.nextProject = projects[projectIndex + 1].name;
+  pagination.page = getNeighbors(currentLocation.page, pages, true);
 
-  }
-  else {
-    pagination.prevProject = projects[projectIndex - 1].name;
-    pagination.nextProject = projects[projectIndex + 1].name;
+  // PROJECT
+  if (currentLocation.project){
+    var allProjectNames = projects.map(x => x.name);
+    pagination.project = getNeighbors(currentLocation.project, allProjectNames, true);
   }
 
-  if (piece){
-    var allPieces = [].concat(...project.rows);
-    var totalPieces = allPieces.length;
-    var pieceIndex = allPieces.indexOf(piece);
+  // PIECE
+  if (currentLocation.piece){
+    var allPieces = [].concat(...getProjectObject(currentLocation.project).rows);
 
-    pagination.currentPiece = pieceIndex + 1;
-    pagination.totalPieces = totalPieces;
-
-    if (pieceIndex == totalPieces - 1) {
-      pagination.prevPiece = allPieces[pieceIndex - 1];
-    }
-    else if (pieceIndex == 0) {
-      pagination.nextPiece = allPieces[pieceIndex + 1];
-    }
-    else {
-      pagination.prevPiece = allPieces[pieceIndex - 1];
-      pagination.nextPiece = allPieces[pieceIndex + 1];
-    }
+    var allPieceNames = allPieces.map(x => x.split('-')[0]);
+    pagination.piece = getNeighbors(currentLocation.piece, allPieceNames, false);
+    pagination.piece.currentNum = allPieceNames.indexOf(currentLocation.piece)+1;
+    pagination.piece.totalNum = allPieceNames.length;
   }
-
   console.log(pagination);
   return pagination;
+}
+
+var getNeighbors = function(val, array, loop=false) {
+  var index = array.indexOf(val);
+  if (index < 0) {
+    return {'prev': undefined, 'next': undefined};
+  }
+
+  var lastIndex = array.length - 1;
+  var prevIndex = index - 1;
+  var nextIndex = index + 1;
+  if (loop) {
+    if (prevIndex < 0) {
+      prevIndex = lastIndex;
+    }
+    if (nextIndex > lastIndex) {
+      nextIndex = 0;
+    }
+  }
+
+  return {'prev': array[prevIndex], 'next': array[nextIndex]};
 }
 
 // ----------------Handlebar helpers -----------------
