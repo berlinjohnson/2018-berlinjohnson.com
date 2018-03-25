@@ -72,6 +72,19 @@ a.button {
       color: darken($primaryText, 4);
     }
   }
+//ICON BUTTONS
+  &.button-icon {
+    border-radius: 100%;
+    padding: 0;
+    height: 36px;
+    width: 36px;
+
+    i {
+      padding: 6px;
+
+    }
+  }
+
 // BREADCRUMB BUTTONS
   &.button-breadcrumb {
     color: $secondaryText;
