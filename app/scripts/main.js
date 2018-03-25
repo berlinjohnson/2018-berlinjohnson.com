@@ -174,17 +174,6 @@ var getFullPieceName = function(projectObj, pieceName) {
 
 var getPaginationPaths = function() {
   var currentLocation = getCurrentLocation();
-  // var pagination = {
-  //   nextPage: "",
-  //   prevPage: "",
-  //   nextProject: "",
-  //   prevProject: "",
-  //   nextPiece: "",
-  //   prevPiece: "",
-  //   currentPiece: "",
-  //   totalPieces: ""
-  // }
-
   var pagination = {
     page: {prev: "", next: ""},
     project: {prev: "", next: ""},
@@ -192,7 +181,6 @@ var getPaginationPaths = function() {
   }
 
   // PAGES
-
   pagination.page = getNeighbors(currentLocation.page, pages, true);
 
   // PROJECT
@@ -204,13 +192,11 @@ var getPaginationPaths = function() {
   // PIECE
   if (currentLocation.piece){
     var allPieces = [].concat(...getProjectObject(currentLocation.project).rows);
-
     var allPieceNames = allPieces.map(x => x.split('-')[0]);
     pagination.piece = getNeighbors(currentLocation.piece, allPieceNames, false);
     pagination.piece.currentNum = allPieceNames.indexOf(currentLocation.piece)+1;
     pagination.piece.totalNum = allPieceNames.length;
   }
-  console.log(pagination);
   return pagination;
 }
 
