@@ -23,10 +23,10 @@ header {
   right: 0;
   max-width: $maxWidth;
   margin: 0 auto;
-  padding: 0 32px 40px 32px;
+  padding: 0 32px 32px 32px;
 
   @include mobile(small) {
-    padding: 0 16px 40px 16px;
+    padding: 0 16px 16px 16px;
     top: 92px;
   }
 }
@@ -92,6 +92,7 @@ section {
     margin-top: 8px;
     padding: 4px;
     opacity: 0.24;
+    margin-bottom: 16px;
 
     &:hover {
       opacity: 0.87;
@@ -113,6 +114,7 @@ $coverImageWidth: 464px;
 
   &:last-child {
     border-bottom: none;
+    margin-bottom: 32px;
   }
 
 }

@@ -104,7 +104,22 @@ a.button {
       // color: darken($primaryText, 4);
     }
   }
+  &.is-disabled {
+    cursor: default;
+    color: $border;
+    background-color: $border;
+
+    &.button-outline {
+      box-shadow: inset 0 0 0 2px $border;
+      background-color: inherit;
+    }
+
+    &:hover {
+      color: $border;
+    }
+  }
 }
+
 
 // BREADCRUMB GROUP
 .breadcrumbs {
@@ -129,5 +144,33 @@ a.button {
     @include mobile(medium) {
       margin-left: 24px;
     }
+  }
+}
+
+// PAGINATION GROUP
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+
+  .button-icon:first-child {
+    margin-right: 4px;
+  }
+
+  .project-wrapper {
+    // flex: 1;
+  }
+  .piece-wrapper {
+    // width: 100%;
+    // margin:0 auto;
+
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 16px;
+    padding-top: 4px;
+    text-align: center;
+    text-transform: uppercase;
   }
 }

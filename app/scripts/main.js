@@ -34,7 +34,6 @@ var init = function() {
   $('section').on('click', '.viewPortfolio', navigateTo);
   $('section').on('click', '.viewProject', navigateTo);
   $('section').on('click', '.viewPiece', navigateTo);
-
 }
 
 // -------------------- NAV BAR --------------------
@@ -48,6 +47,7 @@ var navigateTo = function(e) {
 
   // Update url path
   history.pushState({}, '', path);
+  console.log(path);
   showSection(path);
 };
 
@@ -93,8 +93,10 @@ var showPortfolio = function() {
 var showProject = function(projectName) {
   $('#project').html('');
   var project = projects.filter(x => x.name == projectName)[0];
-  var projectObj = projectTemplate(project);
+  var pagination = getPaginationPaths(project);
+  var projectObj = projectTemplate({"project": project, "pagination": pagination});
   $('#project').html(projectObj);
+
 }
 
 var showPiece = function(projectName, pieceName) {
@@ -102,9 +104,65 @@ var showPiece = function(projectName, pieceName) {
   var project = projects.filter(x => x.name == projectName)[0];
   var allPieces = [].concat(...project.rows);
   var piece = allPieces.filter(x => x.startsWith(pieceName + '-'))[0];
-  var pieceObj = pieceTemplate({"project": projectName, "piece": piece});
+  var pagination = getPaginationPaths(project, piece);
+
+  var pieceObj = pieceTemplate({"project": projectName, "piece": piece, "pagination": pagination});
   $('#piece').html(pieceObj);
 }
+
+var getPaginationPaths = function(project, piece) {
+  // console.log(project, piece);
+
+  var pagination = {
+    nextProject: "",
+    prevProject: "",
+    nextPiece: "",
+    prevPiece: "",
+    currentPiece: "",
+    totalPieces: ""
+  }
+
+  var totalProjects = projects.length;
+  var projectIndex = projects.indexOf(project);
+
+  if (projectIndex == totalProjects - 1) {
+    pagination.prevProject = projects[projectIndex - 1].name;
+    pagination.nextProject = projects[0].name;
+  }
+  else if (projectIndex == 0) {
+    pagination.prevProject = projects[projectIndex].name;
+    pagination.nextProject = projects[totalProjects - 1].name;
+
+  }
+  else {
+    pagination.prevProject = projects[projectIndex - 1].name;
+    pagination.nextProject = projects[projectIndex + 1].name;
+  }
+
+  if (piece){
+    var allPieces = [].concat(...project.rows);
+    var totalPieces = allPieces.length;
+    var pieceIndex = allPieces.indexOf(piece);
+
+    pagination.currentPiece = pieceIndex + 1;
+    pagination.totalPieces = totalPieces;
+
+    if (pieceIndex == totalPieces - 1) {
+      pagination.prevPiece = allPieces[pieceIndex - 1];
+    }
+    else if (pieceIndex == 0) {
+      pagination.nextPiece = allPieces[pieceIndex + 1];
+    }
+    else {
+      pagination.prevPiece = allPieces[pieceIndex - 1];
+      pagination.nextPiece = allPieces[pieceIndex + 1];
+    }
+  }
+
+  //TODO: NEEDS TO HANDLE EDGE CASE OF PREV FOR FIRST/FIRST AND NEXT FOR LAST/LAST
+  return pagination;
+}
+
 // ----------------Handlebar helpers -----------------
 // Both assumes naming format:
 // this_is_the_name-ratio.filetype

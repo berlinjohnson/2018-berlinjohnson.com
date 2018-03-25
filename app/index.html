@@ -116,22 +116,23 @@
 
           <div class="project projectView">
             <div class="project-text">
-              <h2>{{#nameOnly name}}{{/nameOnly}}</h2>
+              <h2>{{#nameOnly project.name}}{{/nameOnly}}</h2>
               <h4>
-                {{#each role}}
+                {{#each project.role}}
                   {{#if @first}}{{this}}
                   {{else}} • {{this}}{{/if}}
                 {{/each}}
               </h4>
-              <p class="margin-top-16">{{description}}</p>
+              <p class="margin-top-16">{{project.description}}</p>
             </div>
             <div class="project-gallery">
-              {{#each rows as |row|}}
+              {{#each project.rows as |row|}}
               <div class="project-gallery-row">
                 {{#each row as |piece|}}
+
                 <div class="thumbnail gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
-                <img class="viewPiece" data-path="/portfolio/{{@root.name}}/{{#pathOnly piece}}{{/pathOnly}}/"
-                     src="/images/projects/{{@root.name}}/{{piece}}">
+                <img class="viewPiece" data-path="/portfolio/{{@root.project.name}}/{{#pathOnly piece}}{{/pathOnly}}/"
+                     src="/images/projects/{{@root.project.name}}/{{piece}}">
                 </div>
                 {{/each}}
               </div>
@@ -157,10 +158,63 @@
           <div class="piece-view">
             <img class="viewPiece" src="/images/projects/{{project}}/{{piece}}">
           </div>
-          <div class="pagination margin-top-40">
-            <a id="prevPiece" class="button button-icon"><i class="material-icons">arrow_back</i></a>
-            <a id="nextPiece" class="button button-outline button-icon"><i class="material-icons">arrow_forward</i></a>
+
+          <div class="pagination margin-top-16">
+            <!-- IF THERE IS A NEXT PIECE -->
+            {{#if pagination.nextPiece}}
+              <div class="project-wrapper">
+                {{#unless pagination.prevPiece}}
+                <a class="viewProject button button-outline" data-path="/portfolio/{{project}}/">
+                  back to project
+                </a>
+                {{/unless}}
+              </div>
+              <div class="piece-wrapper">
+                {{#if pagination.prevPiece}}
+                <a class="viewPiece button button-outline button-icon"
+                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.prevPiece}}{{/pathOnly}}/">
+                  <i class="material-icons">arrow_back</i>
+                </a>
+                {{else}}
+                <a class="is-disabled button button-outline button-icon">
+                  <i class="material-icons">arrow_backd</i>
+                </a>
+                {{/if}}
+                <a class="viewPiece button button-outline button-icon"
+                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.nextPiece}}{{/pathOnly}}/">
+                  <i class="material-icons">arrow_forward</i>
+                </a>
+              <p>{{pagination.currentPiece}}/{{pagination.totalPieces}}</p>
+              </div>
+              {{#if pagination.prevPiece}}
+              <div class="project-wrapper"></div>
+              {{/if}}
+            <!-- ELSE LAST PIECE IN PROJECT -->
+            {{else}}
+
+            <div class="piece-wrapper">
+              <a class="viewPiece button button-outline button-icon"
+                data-path="/portfolio/{{project}}/{{#pathOnly pagination.prevPiece}}{{/pathOnly}}/">
+                <i class="material-icons">arrow_back</i>
+              </a>
+              <a class="is-disabled button button-outline button-icon">
+                <i class="material-icons">arrow_forward</i>
+              </a>
+
+            <p>{{pagination.currentPiece}}/{{pagination.totalPieces}}</p>
+            </div>
+            <div class="project-wrapper">
+              <a class="viewProject button" data-path="/portfolio/{{pagination.nextProject}}/">
+                next project
+              </a>
+              <p>{{#nameOnly pagination.nextProject}}{{/nameOnly}}</p>
+            </div>
+
+
+            {{/if}}
+
           </div>
+
         </script>
       </section>
       <!-- RESUME -->
