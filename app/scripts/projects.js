@@ -99,15 +99,6 @@ var projects = [
     ]
   },
   {
-    "name": "3D",
-    "role": ["modeling", "texturing", "lighting"],
-    "description": "Digital models, textures and lighting for animation using Maya, ZBrush and Mudbox.",
-    "rows": [
-      ["girl-1x1.png", "boots-1x1.png", "giraffe-2x3.png"],
-      ["bedroom_window-3x2.png", "bedroom_door-3x2.png"]
-    ]
-  },
-  {
     "name": "shoes",
     "role": ["painting"],
     "description": "Hand painted customized shoes.",
@@ -115,6 +106,15 @@ var projects = [
       ["pie-4x3.jpg", "true_gryffindor-4x3.jpg"],
       ["the_hobbit-4x3.jpg", "rainbow_dinos-4x3.jpg"],
       ["doctor_who-3x2.jpg", "walking_on_clouds-1x1.jpg"]
+    ]
+  },
+  {
+    "name": "3D",
+    "role": ["modeling", "texturing", "lighting"],
+    "description": "Digital models, textures and lighting for animation using Maya, ZBrush and Mudbox.",
+    "rows": [
+      ["girl-1x1.png", "boots-1x1.png", "giraffe-2x3.png"],
+      ["bedroom_window-3x2.png", "bedroom_door-3x2.png"]
     ]
   }
 ];

@@ -138,6 +138,20 @@
               </div>
               {{/each}}
             </div>
+            <div class="pagination margin-top-16">
+              <div class="project-wrapper">
+                <a class="viewProject button button-outline" data-path="/portfolio/{{pagination.prevProject}}/">
+                  prev project
+                </a>
+                <p>{{#nameOnly pagination.prevProject}}{{/nameOnly}}</p>
+              </div>
+              <div class="project-wrapper">
+                <a class="viewProject button" data-path="/portfolio/{{pagination.nextProject}}/">
+                  next project
+                </a>
+                <p>{{#nameOnly pagination.nextProject}}{{/nameOnly}}</p>
+              </div>
+            </div>
           </div>
         </script>
       </section>
@@ -191,26 +205,23 @@
               {{/if}}
             <!-- ELSE LAST PIECE IN PROJECT -->
             {{else}}
+              <div class="piece-wrapper">
+                <a class="viewPiece button button-outline button-icon"
+                  data-path="/portfolio/{{project}}/{{#pathOnly pagination.prevPiece}}{{/pathOnly}}/">
+                  <i class="material-icons">arrow_back</i>
+                </a>
+                <a class="is-disabled button button-outline button-icon">
+                  <i class="material-icons">arrow_forward</i>
+                </a>
 
-            <div class="piece-wrapper">
-              <a class="viewPiece button button-outline button-icon"
-                data-path="/portfolio/{{project}}/{{#pathOnly pagination.prevPiece}}{{/pathOnly}}/">
-                <i class="material-icons">arrow_back</i>
-              </a>
-              <a class="is-disabled button button-outline button-icon">
-                <i class="material-icons">arrow_forward</i>
-              </a>
-
-            <p>{{pagination.currentPiece}}/{{pagination.totalPieces}}</p>
-            </div>
-            <div class="project-wrapper">
-              <a class="viewProject button" data-path="/portfolio/{{pagination.nextProject}}/">
-                next project
-              </a>
-              <p>{{#nameOnly pagination.nextProject}}{{/nameOnly}}</p>
-            </div>
-
-
+              <p>{{pagination.currentPiece}}/{{pagination.totalPieces}}</p>
+              </div>
+              <div class="project-wrapper">
+                <a class="viewProject button" data-path="/portfolio/{{pagination.nextProject}}/">
+                  next project
+                </a>
+                <p>{{#nameOnly pagination.nextProject}}{{/nameOnly}}</p>
+              </div>
             {{/if}}
 
           </div>

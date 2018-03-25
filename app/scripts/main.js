@@ -125,13 +125,15 @@ var getPaginationPaths = function(project, piece) {
   var totalProjects = projects.length;
   var projectIndex = projects.indexOf(project);
 
+  // last project
   if (projectIndex == totalProjects - 1) {
     pagination.prevProject = projects[projectIndex - 1].name;
     pagination.nextProject = projects[0].name;
   }
+  // first project
   else if (projectIndex == 0) {
-    pagination.prevProject = projects[projectIndex].name;
-    pagination.nextProject = projects[totalProjects - 1].name;
+    pagination.prevProject = projects[totalProjects - 1].name;
+    pagination.nextProject = projects[projectIndex + 1].name;
 
   }
   else {
@@ -159,7 +161,7 @@ var getPaginationPaths = function(project, piece) {
     }
   }
 
-  //TODO: NEEDS TO HANDLE EDGE CASE OF PREV FOR FIRST/FIRST AND NEXT FOR LAST/LAST
+  console.log(pagination);
   return pagination;
 }
 
