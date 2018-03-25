@@ -1,4 +1,5 @@
 header {
+  overflow: hidden;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -15,17 +16,24 @@ header {
 }
 
 .content {
+  position: absolute;
+  top: 72px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   max-width: $maxWidth;
-  margin: auto;
+  margin: 0 auto;
   padding: 0 32px 40px 32px;
 
   @include mobile(small) {
     padding: 0 16px 40px 16px;
+    top: 92px;
   }
 }
 
 section {
   transition: opacity 0.4s ease-in;
+  height: 100%;
 }
 
 // common margin classes
@@ -195,6 +203,8 @@ $smallMargin: 4px;
     img {
       width: 100%;
       height: auto;
+      // max-height: 100%;
+      // max-width: 100%;
       // cursor: pointer;
     }
   }
@@ -204,6 +214,23 @@ $smallMargin: 4px;
   cursor: pointer;
 }
 
-.project-gallery .piece-view {
+.piece {
+  display: flex;
+  flex-direction: column;
 
+  .piece-view {
+    position: relative;
+    flex: 1;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }

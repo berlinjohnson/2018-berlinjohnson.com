@@ -119,6 +119,7 @@ p {
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
+  white-space: nowrap;
 
   span {
     font-family: $font-script;
