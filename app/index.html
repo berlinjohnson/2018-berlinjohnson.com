@@ -84,7 +84,7 @@
 
         <script id="portfolio-template" type="text/x-handlebars-template">
           {{#each projects}}
-          <div id="{{name}}" class="project margin-top-32">
+          <div id="{{name}}" class="project">
             <div class="project-text">
               <h2>{{#nameOnly name}}{{/nameOnly}}</h2>
               <h4>
@@ -97,7 +97,7 @@
             </div>
             <div class="project-preview" >
               <img data-path="/portfolio/{{name}}/"
-                class="viewProject cover" src="/images/COVERplaceholder.png">
+                class="viewProject cover" src="/images/{{name}}.png">
               <a data-path="/portfolio/{{name}}/"
               class="viewProject button button-outline margin-top-24">view project</a>
             </div>

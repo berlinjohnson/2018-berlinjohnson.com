@@ -115,7 +115,11 @@ $coverImageWidth: 464px;
   justify-content: space-between;
   flex-wrap: wrap;
   border-bottom: $border 1px solid;
-  padding: 16px 0;
+  padding: 40px 0 32px 0;
+
+  @include mobile(small) {
+    padding: 24px 0;
+  }
 
   &:last-child {
     border-bottom: none;

@@ -119,7 +119,7 @@ var projects = [
   },
   {
     "name": "misc",
-    "role": ["logo design", "illustration"],
+    "role": ["illustration", "character design", "logo design"],
     "description": "An assortment of small projects and doodles.",
     "rows": [
       ["corgi_chaos-4x1.gif"],
