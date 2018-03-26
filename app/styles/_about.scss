@@ -1,0 +1,47 @@
+// ABOUT ME ------------
+.skill-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.skill {
+  width: 360px;
+  display: flex;
+  align-items: center;
+  margin: 8px;
+
+  > div {
+    margin-top: 8px;
+  }
+
+  img {
+    height: 64px;
+    width: 64px;
+    padding-right: 16px;
+  }
+}
+
+.actions {
+  @include mobile(small) {
+    text-align: center;
+  }
+  .button {
+    margin: 4px;
+
+  }
+
+  &.social-media img {
+    height: 36px;
+    margin-top: 8px;
+    padding: 4px;
+    opacity: 0.24;
+    margin-bottom: 16px;
+
+    &:hover {
+      opacity: 0.87;
+      transition: opacity 0.2 ease;
+    }
+  }
+}

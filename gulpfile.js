@@ -60,6 +60,7 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAsse
             baseDir: "./build/",
             routes: {
               "/portfolio": "./build/",
+              "/resume": "./build/",
               "/portfolio/test_project/": "./build/",
               "/portfolio/firebase_branding/": "./build/",
               "/portfolio/misc/": "./build/",
