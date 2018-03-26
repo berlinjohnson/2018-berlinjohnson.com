@@ -49,7 +49,10 @@ var init = function() {
       showNeighbor("next");
     }
     else if (e.key == "ArrowLeft") {
-      showNeighbor("prev")
+      showNeighbor("prev");
+    }
+    else if (e.key == "Escape") {
+      showParent();
     }
   });
 }
@@ -62,17 +65,15 @@ var navigateTo = function(e) {
   if (location.pathname === path) {
     return;
   };
-
-  // Update url path
-  history.pushState({}, '', path);
   showSection(path);
 };
+
 
 var showNeighbor = function(direction) {
   var currentLocation = getLocationObj();
   var pagination = getPaginationPaths();
   var path = location.pathname;
-  console.log(pagination);
+
   if (currentLocation.piece) {
     if (pagination.piece && pagination.piece[direction]) {
       path = "/portfolio/" + currentLocation.project + "/" + pagination.piece[direction] + "/";
@@ -80,7 +81,6 @@ var showNeighbor = function(direction) {
   }
   else if (currentLocation.project) {
     if (pagination.project && pagination.project[direction]) {
-      console.log("project");
       path = "/portfolio/" + pagination.project[direction] + "/";
     }
   } else if (currentLocation.page) {
@@ -94,30 +94,29 @@ var showNeighbor = function(direction) {
       }
     }
   }
-  // if (pagination.piece && pagination.piece[direction]) {
-  //   path = "/portfolio/" + currentLocation.project + "/" + pagination.piece[direction] + "/";
-  // }
-  // else if (pagination.project && pagination.project[direction]) {
-  //   console.log("project");
-  //   path = "/portfolio/" + pagination.project[direction] + "/";
-  // }
-  // else if (pagination.page && pagination.page[direction]) {
-  //   var page = pagination.page[direction];
-  //   if (page == "about") {
-  //     path = "/";
-  //   }
-  //   else {
-  //     path = "/" + page + "/";
-  //   }
-  // }
-
-
-  history.pushState({}, '', path);
   showSection(path);
-  // showSection(path);
+}
+
+var showParent = function() {
+  var currentLocation = getLocationObj();
+  var path = location.pathname;
+
+  if (currentLocation.piece) {
+    path = "/portfolio/" + currentLocation.project;
+  }
+  else if (currentLocation.project) {
+    path = "/portfolio/"
+  }
+  else {
+    return;
+  }
+  showSection(path);
 }
 
 var showSection = function(path) {
+  // Update url path
+  history.pushState({}, '', path);
+
   var pathObj = getLocationObj(path);
 
   var page = pathObj.page;
