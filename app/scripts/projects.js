@@ -12,7 +12,7 @@
 var projects = [
   {
     "name": "firebase_branding",
-    "role": ["logo design", "brand idenity"],
+    "role": ["logo design", "brand identity"],
     "description": "Evolved the Firebase brand to represent a complete app platform and fit within the Google product family.",
     "rows": [
       ["logo-3x1.png","vertical_logo-3x4.png","logomark-1x1.png","knockout_logomark-1x1.png"],
@@ -69,7 +69,7 @@ var projects = [
   {
     "name": "diary_comics",
     "role": ["illustration"],
-    "description": "Drawings of every day things.",
+    "description": "Drawings of everyday things.",
     "rows": [
       ["lands_end-2x3.jpg", "tiny_apartment-2x3.jpg"],
       ["baker_beach-3x2.jpg", "dog_sitting-2x3.jpg"],

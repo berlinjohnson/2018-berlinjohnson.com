@@ -42,6 +42,12 @@ gulp.task('images', function() {
                 .pipe(browserSync.stream());
 });
 
+gulp.task('downloads', function() {
+    return gulp.src('app/downloads/*')
+                .pipe(gulp.dest('build/downloads/'))
+                .pipe(browserSync.stream());
+});
+
 var otherAssets = ['app/favicon.ico'];
 gulp.task('otherAssets', function() {
     return gulp.src(otherAssets)
@@ -54,7 +60,7 @@ gulp.task('clean', function() {
 })
 
 // DEFAULT / STATIC SERVER
-gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAssets'], function() {
+gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'downloads', 'otherAssets'], function() {
     browserSync.init({
         server: {
             baseDir: "./build/",
