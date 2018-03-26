@@ -176,13 +176,7 @@
           <div class="pagination margin-top-16">
             <!-- IF THERE IS A NEXT PIECE -->
             {{#if pagination.piece.next}}
-              <div class="project-wrapper">
-                {{#unless pagination.piece.prev}}
-                <a class="viewProject button button-outline" data-path="/portfolio/{{project}}/">
-                  back to project
-                </a>
-                {{/unless}}
-              </div>
+              <div class="project-wrapper"></div>
               <div class="piece-wrapper">
                 {{#if pagination.piece.prev}}
                 <a class="viewPiece button button-outline button-icon"
@@ -200,9 +194,8 @@
                 </a>
               <p>{{pagination.piece.currentNum}}/{{pagination.piece.totalNum}}</p>
               </div>
-              {{#if pagination.piece.prev}}
               <div class="project-wrapper"></div>
-              {{/if}}
+
 
             <!-- ELSE LAST PIECE IN PROJECT -->
             {{else}}
