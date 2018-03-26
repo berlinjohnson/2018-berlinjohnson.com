@@ -115,7 +115,6 @@ var showParent = function() {
 }
 
 var showSection = function(path) {
-  console.log(projects);
   // Update url path
   history.pushState({}, '', path);
 

@@ -125,7 +125,7 @@ var projects = [
       ["corgi_chaos-4x1.gif"],
       ["pizza_fire_monster-1x1.png", "pie_fire_monster-1x1.png", "confused_fire_monster-1x1.png", "turkey_hacker-3x2.png"],
       ["angular_logo-1x1.png", "ngconf-1x1.png", "solid_city-3x1.png", "outline_city-3x1.png"],
-      ["light_game_controller-1x1.png", "dark_game_controller-1x1.png", "casette-1x1.png", "gameboy-1x1.png", "gameboy-advance-1x1.png"],
+      ["light_game_controller-1x1.png", "dark_game_controller-1x1.png", "casette-1x1.png", "gameboy-1x1.png", "gameboy_advance-1x1.png"],
       ["cat-1x1.jpg", "weekend_mode-1x1.jpg", "sunday_husband-1x1.jpg", "pita-1x1.jpg"],
       ["documentation-3x2.png", "code_snippets-3x2.png", "support-3x2.png"],
       ["love_potion-1x1.jpg", "nate_&_laura-1x1.jpg", "sarah_&_james-1x1.jpg", "party_corgi-3x1.png", "summertime_skepticism-1x1.jpg"],
