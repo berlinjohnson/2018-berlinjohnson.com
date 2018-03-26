@@ -56,7 +56,6 @@ a.button {
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
 
-
   &:hover {
     background-color: darken($primary, 4);
   }

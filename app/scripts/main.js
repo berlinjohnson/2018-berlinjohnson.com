@@ -39,40 +39,18 @@ var init = function() {
   //Arrow key navigation
   $(document).keyup(function(e) {
     e.preventDefault;
-    var currentLocation = getCurrentLocation();
+    var currentLocation = getLocationObj();
     var pagination = getPaginationPaths();
-    var next;
-    var prev;
-    // console.log(pagination);
-    if (currentLocation.piece) {
-      if (pagination.nextPiece){
-        next = pagination.nextPiece;
-      }
-      else {
-        next = pagination.nextProject;
-      }
-      if (pagination.prevPiece){
-        next = pagination.prevPiece;
-      }
-      else {
-        next = pagination.prevProject;
-      }
-    }
-    else if (currentLocation.project) {
+    var path;
 
-    }
-    else {
-      next = pagination.nextPage;
-      prev = pagination.prevPage;
 
-    }
 
-    // if (e.key == "ArrowRight") {
-    //   console.log("Next is: " + next)
-    // }
-    // else if (e.key == "ArrowLeft") {
-    //   console.log("Previous is: " + prev)
-    // }
+    if (e.key == "ArrowRight") {
+      showNeighbor("next");
+    }
+    else if (e.key == "ArrowLeft") {
+      showNeighbor("prev")
+    }
   });
 }
 
@@ -90,12 +68,61 @@ var navigateTo = function(e) {
   showSection(path);
 };
 
-var showSection = function(path) {
-  var currentPath = getCurrentLocation();
+var showNeighbor = function(direction) {
+  var currentLocation = getLocationObj();
+  var pagination = getPaginationPaths();
+  var path = location.pathname;
+  console.log(pagination);
+  if (currentLocation.piece) {
+    if (pagination.piece && pagination.piece[direction]) {
+      path = "/portfolio/" + currentLocation.project + "/" + pagination.piece[direction] + "/";
+    }
+  }
+  else if (currentLocation.project) {
+    if (pagination.project && pagination.project[direction]) {
+      console.log("project");
+      path = "/portfolio/" + pagination.project[direction] + "/";
+    }
+  } else if (currentLocation.page) {
+    if (pagination.page && pagination.page[direction]) {
+      var page = pagination.page[direction];
+      if (page == "about") {
+        path = "/";
+      }
+      else {
+        path = "/" + page + "/";
+      }
+    }
+  }
+  // if (pagination.piece && pagination.piece[direction]) {
+  //   path = "/portfolio/" + currentLocation.project + "/" + pagination.piece[direction] + "/";
+  // }
+  // else if (pagination.project && pagination.project[direction]) {
+  //   console.log("project");
+  //   path = "/portfolio/" + pagination.project[direction] + "/";
+  // }
+  // else if (pagination.page && pagination.page[direction]) {
+  //   var page = pagination.page[direction];
+  //   if (page == "about") {
+  //     path = "/";
+  //   }
+  //   else {
+  //     path = "/" + page + "/";
+  //   }
+  // }
 
-  var page = currentPath.page;
-  var project = currentPath.project;
-  var piece = currentPath.piece;
+
+  history.pushState({}, '', path);
+  showSection(path);
+  // showSection(path);
+}
+
+var showSection = function(path) {
+  var pathObj = getLocationObj(path);
+
+  var page = pathObj.page;
+  var project = pathObj.project;
+  var piece = pathObj.piece;
 
   updateTabs(page);
   // Switch section shown
@@ -148,19 +175,20 @@ var showPiece = function(projectName, pieceName) {
   $('#piece').html(pieceObj);
 }
 
-var getCurrentLocation = function() {
-  var currentPath = {
+var getLocationObj = function(path) {
+  path = path || location.pathname;
+  var pathObj = {
     page: "",
     project: "",
     piece: ""
   }
 
   var pathArray = location.pathname.split('/').filter(x => x != "");
-  currentPath.page = pathArray[0] || 'about';
-  currentPath.project = pathArray[1];
-  currentPath.piece = pathArray[2];
+  pathObj.page = pathArray[0] || 'about';
+  pathObj.project = pathArray[1];
+  pathObj.piece = pathArray[2];
 
-  return currentPath;
+  return pathObj;
 }
 
 var getProjectObject = function(projectName) {
@@ -173,7 +201,7 @@ var getFullPieceName = function(projectObj, pieceName) {
 }
 
 var getPaginationPaths = function() {
-  var currentLocation = getCurrentLocation();
+  var currentLocation = getLocationObj();
   var pagination = {
     page: {prev: "", next: ""},
     project: {prev: "", next: ""},
