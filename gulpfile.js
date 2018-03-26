@@ -62,6 +62,7 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'otherAsse
               "/portfolio": "./build/",
               "/portfolio/test_project/": "./build/",
               "/portfolio/firebase_branding/": "./build/",
+              "/portfolio/misc/": "./build/",
               "/portfolio/firebase_branding/logo": "./build/",
               "/portfolio/firebase_branding/vertical_logo": "./build/"
             }
