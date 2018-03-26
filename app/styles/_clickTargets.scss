@@ -91,16 +91,32 @@ a.button {
     line-height: 20px;
     background-color: rgba($secondary, 0.12);
     padding: 0 8px;
-    margin: 4px;
-    // flex: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 0px;
+    margin-right: 8px;
 
     &:hover {
       background-color: rgba($secondary, 0.24);
-      // color: darken($primaryText, 4);
+    }
+    &.button-back {
+      position: absolute;
+      top: -2px;
+      left: -24px - 4px;
+      padding: 0 4px;
+      margin: 0;
+      height: 24px;
+      background-color: inherit;
+      border-radius: 100%;
+      &:hover {
+        background-color: rgba($secondary, 0.12);
+      }
+      i {
+        padding: 2px 0;
+        font-size: 16px;
+        line-height: 20px;
+      }
     }
   }
   &.is-disabled {
@@ -123,26 +139,14 @@ a.button {
 // BREADCRUMB GROUP
 .breadcrumbs {
   display: flex;
-  // width: 100%;
-  .button-breadcrumb:first-child {
-    position: relative;
-    overflow: visible;
+  position: relative;
+  .button-breadcrumb:nth-child(1),
+  .button-breadcrumb:nth-child(2) {
     flex-shrink: 0;
+  }
 
-    &:before {
-      @extend %material-icon;
-      font-size: 16px;
-      line-height: 20px;
-      position: absolute;
-      content: 'arrow_back';
-      padding: 8px;
-      left: -32px;
-      top: -8px;
-
-    }
-    @include mobile(medium) {
+  @include mobile(medium) {
       margin-left: 24px;
-    }
   }
 }
 

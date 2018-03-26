@@ -35,6 +35,7 @@ var init = function() {
   $('section').on('click', '.viewPortfolio', navigateTo);
   $('section').on('click', '.viewProject', navigateTo);
   $('section').on('click', '.viewPiece', navigateTo);
+  $('section').on('click', '.button-back', showParent);
 
   //Arrow key navigation
   $(document).keyup(function(e) {
