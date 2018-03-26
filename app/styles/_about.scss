@@ -4,24 +4,25 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
+
+  .skill {
+    width: 360px;
+    display: flex;
+    align-items: center;
+    margin: 8px;
+
+    > div {
+      margin-top: 8px;
+    }
+
+    img {
+      height: 64px;
+      width: 64px;
+      padding-right: 16px;
+    }
+  }
 }
 
-.skill {
-  width: 360px;
-  display: flex;
-  align-items: center;
-  margin: 8px;
-
-  > div {
-    margin-top: 8px;
-  }
-
-  img {
-    height: 64px;
-    width: 64px;
-    padding-right: 16px;
-  }
-}
 
 .actions {
   @include mobile(small) {
