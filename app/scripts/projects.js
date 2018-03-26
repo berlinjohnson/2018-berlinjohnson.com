@@ -58,12 +58,12 @@ var projects = [
     "role": ["visual & interaction design", "design patterns"],
     "description": "UX Lead for Firebase Develop features and cross-console design patterns. Primary designer for Realtime Database, Cloud Firestore and Storage.",
     "rows": [
-      ["overview-2x3.png", "firestore-4x3.png", "adding_data-4x3.png"],
-      ["realtime_database-4x3.png", "rules_simulator-4x3.png", "usage-4x3.png"],
+      ["overview_illustrations-2x3.png", "firestore-4x3.png", "adding_data-4x3.png"],
+      ["realtime_database-4x3.png", "rules_simulator-4x3.png", "feature_usage-4x3.png"],
       ["multi_bucket-4x3.png", "bucket_creation-4x3.png"],
       ["console_color-4x1.png"],
       ["messaging-1x1.png", "form_inputs-4x3.png"],
-      ["usage-3x2.png", "dialogs-4x3.png"]
+      ["usage_scorecards-3x2.png", "dialogs-4x3.png"]
     ]
   },
   {
