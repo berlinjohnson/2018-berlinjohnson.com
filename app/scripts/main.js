@@ -162,10 +162,10 @@ var showProject = function(projectName) {
   var pagination = getPaginationPaths();
   var projectObj = projectTemplate({"project": project, "pagination": pagination});
   $('#project').html(projectObj);
-
 }
 
 var showPiece = function(projectName, pieceName) {
+  $('#piece').addClass("is-hidden");
   $('#piece').html('');
   var project = getProjectObject(projectName);
   var piece = getFullPieceName(project, pieceName);

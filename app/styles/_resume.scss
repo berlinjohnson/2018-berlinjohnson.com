@@ -64,9 +64,16 @@
   h3 {
     font-size: 16px;
     letter-spacing: 2px;
+
+    p {
+      text-transform: none;
+      letter-spacing: 0.5px;
+      display: inline;
+      color: $blackPrimary;
+    }
   }
 
-  p:last-child {
+  p:nth-child(3) {
     font-style: italic;
   }
 }
