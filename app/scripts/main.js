@@ -139,6 +139,7 @@ var showSection = function(path) {
     showPortfolio();
   }
   $('section[data-path="' + path + '"]').removeClass('is-hidden');
+  watchProgressiveLoad();
 };
 
 var updateTabs = function(page) {
@@ -249,6 +250,16 @@ var getNeighbors = function(val, array, loop=false) {
   return {'prev': array[prevIndex], 'next': array[nextIndex]};
 }
 
+var watchProgressiveLoad = function() {
+  $('.img-baby').on('load', function(e) {
+    $(this).addClass('is-loaded');
+  });
+  $('.img-thumbnail').on('load', function(e) {
+    $(this).addClass('is-loaded');
+    $('.img-baby', $(this).parent()).attr('style', 'opacity: 0;');
+  });
+}
+
 // ----------------Handlebar helpers -----------------
 // Both assumes naming format:
 // this_is_the_name-ratio.filetype
@@ -267,6 +278,16 @@ Handlebars.registerHelper('ratioOnly', function(x) {
   // ratio.filetype --> ratio
   var ratio = fileRatio.split('.')[0];
   return ratio;
+});
+
+Handlebars.registerHelper('heightPercent', function(x) {
+  // this_is_the_name-ratio.filetype --> h/w
+  var fileRatio = x.split('-')[1];
+  // ratio.filetype --> ratio
+  var ratio = fileRatio.split('.')[0].split('x');
+  var width = parseFloat(ratio[0]);
+  var height = parseFloat(ratio[1]);
+  return 100 * (height / width);
 });
 
 Handlebars.registerHelper('pathOnly', function(x) {

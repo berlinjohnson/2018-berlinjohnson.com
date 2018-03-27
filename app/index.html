@@ -26,10 +26,7 @@
         <h3 class="margin-top-40">Ali Berlin Johnson</h3>
         <h2>I'm an illustrator, designer, and engineer.</h2>
         <p class="margin-top-32">
-          With a degree in biomedical engineering and a passion for design,
-          I enjoy combining creativity with science and technology.
-          Being self-taught in many regards, I'm extrememly passionate about
-          continuious learning and not just being put in a box that matches a job title.</p>
+          With a degree in biomedical engineering and a passion for design... <b>I need to finish this</b></p>
         <div class="skill-group margin-top-24">
           <div class="skill">
             <!-- <img src="/images/IMGplaceholder.png"> -->
@@ -138,8 +135,11 @@
                 {{#each row as |piece|}}
 
                 <div class="thumbnail gallery-image-{{#ratioOnly piece}}{{/ratioOnly}}">
-                <img class="viewPiece" data-path="/portfolio/{{@root.project.name}}/{{#pathOnly piece}}{{/pathOnly}}/"
-                     src="/images/projects/{{@root.project.name}}/{{piece}}">
+                  <img class="viewPiece img-baby" data-path="/portfolio/{{@root.project.name}}/{{#pathOnly piece}}{{/pathOnly}}/"
+                       src="/images/generated/tiny/{{@root.project.name}}/{{piece}}">
+                  <img class="viewPiece img-thumbnail" data-path="/portfolio/{{@root.project.name}}/{{#pathOnly piece}}{{/pathOnly}}/"
+                       src="/images/generated/thumbnails/{{@root.project.name}}/{{piece}}">
+                  <div style="padding-bottom: {{#heightPercent piece}}{{/heightPercent}}%;"></div>
                 </div>
                 {{/each}}
               </div>
@@ -181,7 +181,7 @@
             <h2>{{#nameOnly piece}}{{/nameOnly}}</h2>
           </div>
           <div class="piece-view">
-            <img class="viewPiece" src="/images/projects/{{project}}/{{piece}}">
+            <img src="/images/projects/{{project}}/{{piece}}">
           </div>
 
           <div class="pagination margin-top-16">
