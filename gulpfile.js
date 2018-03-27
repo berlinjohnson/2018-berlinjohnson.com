@@ -67,6 +67,7 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'downloads
             routes: {
               "/portfolio": "./build/",
               "/resume": "./build/",
+              "/lol": "./build/",
               "/portfolio/test_project/": "./build/",
               "/portfolio/firebase_branding/": "./build/",
               "/portfolio/misc/": "./build/",
