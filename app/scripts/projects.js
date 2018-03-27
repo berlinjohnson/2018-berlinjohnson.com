@@ -25,7 +25,7 @@ var projects = [
   {
     "name": "avatars",
     "role": ["illustration"],
-    "description": "Illustrated avatars for the entire UX team, as well as contributing avatars to the winners of the UX Gold Star Award for advocacy appreciation.",
+    "description": "Illustrated avatars for the Firebase UX team, as well as contributing avatars to the winners of the UX Gold Star Award for advocacy appreciation.",
     "rows": [
       ["Pedro-1x1.png", "Annie-1x1.png", "Tiffany-1x1.png", "Keum_Eun-1x1.png"],
       ["Allie-1x1.png", "Mei-1x1.png", "Tony-1x1.png", "Erik-1x1.png"],
