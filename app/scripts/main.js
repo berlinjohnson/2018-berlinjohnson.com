@@ -158,6 +158,7 @@ var showPortfolio = function() {
   $('#portfolio').html('');
   var projectList = portfolioTemplate({"projects": projects});
   $('#portfolio').html(projectList);
+  $(window).scrollTop(0);
 }
 
 var showProject = function(projectName) {
