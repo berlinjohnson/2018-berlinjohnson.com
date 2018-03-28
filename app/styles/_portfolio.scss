@@ -130,7 +130,8 @@ $smallMargin: 4px;
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 1s linear;
+    transition: opacity 0.2s ease-in;
+    background-color: $white;
   }
 
   img.is-loaded {
@@ -164,5 +165,6 @@ $smallMargin: 4px;
     left: 0;
     right: 0;
     margin: auto;
+    background-color: $white;
   }
 }

@@ -19,6 +19,9 @@ $(function() {
 
 // -------------------- INIT --------------------
 var init = function() {
+  // Ugly gray click box hack
+  document.addEventListener("touchstart", function(){}, true);
+
   // First page load
   showSection(location.pathname);
 
@@ -163,6 +166,7 @@ var showProject = function(projectName) {
   var pagination = getPaginationPaths();
   var projectObj = projectTemplate({"project": project, "pagination": pagination});
   $('#project').html(projectObj);
+  $(window).scrollTop(0);
 }
 
 var showPiece = function(projectName, pieceName) {

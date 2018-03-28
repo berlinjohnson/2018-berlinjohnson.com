@@ -32,6 +32,7 @@ header {
 }
 
 section {
+  position: relative;
   transition: opacity 0.4s ease-in;
   max-height: 100%;
 }

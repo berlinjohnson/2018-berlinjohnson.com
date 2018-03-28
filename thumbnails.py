@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from shutil import copyfile
 import json
 from PIL import Image
 
@@ -179,12 +180,16 @@ for project in projects:
 
         for img_name, new_size in zip(row, new_sizes):
             # Normal thumbnail
-            img = Image.open(base_path + 'projects/' + project_name + '/' + img_name)
-            img.thumbnail(new_size, Image.ANTIALIAS)
+            in_path = base_path + 'projects/' + project_name + '/' + img_name
             out_path = base_out_path + 'thumbnails/' + project_name + '/' + img_name
             if not os.path.exists(os.path.dirname(out_path)):
                 os.makedirs(os.path.dirname(out_path))
-            img.save(out_path)
+            if img_name.endswith('.gif'):
+                copyfile(in_path, out_path)
+            else:
+                img = Image.open(in_path)
+                img.thumbnail(new_size, Image.ANTIALIAS)
+                img.save(out_path)
 
             # Tiny thumbnail
             img = Image.open(base_path + 'projects/' + project_name + '/' + img_name)

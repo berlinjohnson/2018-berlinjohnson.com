@@ -6,6 +6,7 @@ var cache = require('gulp-cache');
 var process = require('child_process');
 var del = require('del');
 var argv = require('yargs').argv;
+var RevAll = require('gulp-rev-all');
 
 //SASS
 gulp.task('styles', function() {
@@ -20,7 +21,7 @@ gulp.task('styles', function() {
 //JAVASCRIPT
 gulp.task('scripts', function() {
 	// Single entry point to browserify
-	return gulp.src('app/scripts/main.js')
+	return gulp.src('app/scripts/*')
 		.pipe(browserify({
 		  insertGlobals : true,
 		  debug : true
@@ -31,7 +32,7 @@ gulp.task('scripts', function() {
 
 //COPY INDEX.HTML TO BUILD DIRECTORY
 gulp.task('html', function() {
-    return gulp.src('app/index.html')
+    return gulp.src('app/**/*.html')
                 .pipe(gulp.dest('build/'))
                 .pipe(browserSync.stream());
 });
@@ -55,12 +56,18 @@ gulp.task('otherAssets', function() {
                 .pipe(browserSync.stream());
 });
 
+gulp.task('version', ['html', 'styles', 'scripts'], function() {
+  return gulp.src(['build/styles.css', 'build/main.js', 'build/index.html'])
+              .pipe(RevAll.revision({dontRenameFile: [/^\/index.html/g]}))
+              .pipe(gulp.dest('build'));
+});
+
 gulp.task('clean', function() {
   return del.sync('build/*');
 })
 
 // DEFAULT / STATIC SERVER
-gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'downloads', 'otherAssets'], function() {
+gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'downloads', 'otherAssets', 'version'], function() {
     browserSync.init({
         server: {
             baseDir: "./build/",
@@ -78,9 +85,9 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'downloads
         open: false
     });
 
-    gulp.watch('app/*.html', ['html']);
-    gulp.watch('app/styles/**/*.scss', ['styles']);
-    gulp.watch('app/scripts/**/*.js', ['scripts']);
+    gulp.watch('app/*.html', ['html', 'version']);
+    gulp.watch('app/styles/**/*.scss', ['styles', 'version']);
+    gulp.watch('app/scripts/**/*.js', ['scripts', 'version']);
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch(otherAssets, ['otherAssets']);
 });
