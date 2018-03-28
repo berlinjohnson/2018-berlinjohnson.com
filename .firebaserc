@@ -1,5 +1,6 @@
 {
   "projects": {
-    "staging": "staging-berlinjohnson"
+    "staging": "staging-berlinjohnson",
+    "prod": "berlinjohnson-459fb"
   }
 }
