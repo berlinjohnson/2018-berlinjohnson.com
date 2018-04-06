@@ -59,9 +59,11 @@ var init = function() {
       showParent();
     }
   });
+
 }
 
 // -------------------- NAV BAR --------------------
+
 var navigateTo = function(e) {
   e.preventDefault;
 
@@ -130,20 +132,51 @@ var showSection = function(path) {
   updateTabs(page);
   // Switch section shown
   $('section').addClass('is-hidden');
-  if (piece) {
+  if (!isValidNavigation(page, project, piece)) {
+    $('#404').removeClass('is-hidden');
+  }
+  else if (piece) {
     $('#piece').attr("data-path", path);
     showPiece(project, piece);
   }
   else if (project) {
     $('#project').attr("data-path", path);
     showProject(project);
+    watchProgressiveLoad();
   }
   else if (page == 'portfolio') {
     showPortfolio();
   }
   $('section[data-path="' + path + '"]').removeClass('is-hidden');
-  watchProgressiveLoad();
+
+  if (!piece) {
+    stopLoading();
+  }
 };
+
+var isValidNavigation = function(page, project, piece) {
+  if (pages.indexOf(page) == -1) {
+    return false;
+  }
+
+  if (page != 'portfolio' && (project || piece)) {
+    return false;
+  }
+
+  if (page == 'portfolio' && project) {
+    var matchingProject = getProjectObject(project);
+    if (!matchingProject) {
+      return false;
+    }
+
+    if (piece && !getFullPieceName(matchingProject, piece)) {
+      stopLoading();
+      return false;
+    }
+  }
+
+  return true;
+}
 
 var updateTabs = function(page) {
   var path = "/"
@@ -171,6 +204,8 @@ var showProject = function(projectName) {
 }
 
 var showPiece = function(projectName, pieceName) {
+  startLoading();
+
   $('#piece').addClass("is-hidden");
   $('#piece').html('');
   var project = getProjectObject(projectName);
@@ -179,6 +214,28 @@ var showPiece = function(projectName, pieceName) {
 
   var pieceObj = pieceTemplate({"project": projectName, "piece": piece, "pagination": pagination});
   $('#piece').html(pieceObj);
+
+  setTimeout(function() {
+    var img = $('.img-full');
+    img.on('load', function() {
+      stopLoading();
+    });
+    img.attr('src', img.attr('data-src'));
+  }, 0);
+}
+
+var startLoading = function() {
+  if ($('.is-loading').length < 1) {
+    var template = $('.loader-template');
+    var newLoader = template.clone();
+    newLoader.removeClass('loader-template');
+    newLoader.addClass('is-loading');
+    template.after(newLoader);
+  }
+}
+
+var stopLoading = function() {
+  $('.loader:not(.loader-template)').remove();
 }
 
 var getLocationObj = function(path) {

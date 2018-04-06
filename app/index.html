@@ -19,14 +19,15 @@
         <button id="resumeNav" data-path="/resume/">resume</button>
       </nav>
     </header>
-    <div class="content">
-      <!-- <div class="loader"></div> -->
+    <div id="content" class="content">
+      <div class="loader loader-template"></div>
+      <div class="loader is-loading"></div>
       <!-- 404-->
-      <!-- <section id="404" class="404 is-hidden">
+      <section id="404" class="fourOHfour is-hidden margin-top-80">
         <h1>404</h1>
-        <h3 class="margin-top-40">Oops, there is nothing to see here</h3>
+        <h3 class="margin-top-40">Oops, nothing is here</h3>
         <h2 class="margin-top-8">Were you trying to magic a page into being?</h2>
-      </section> -->
+      </section>
       <!-- ABOUT ME -->
       <section data-path="/" class="about is-hidden">
         <h1>About me</h1>
@@ -193,7 +194,7 @@
             <h2>{{#nameOnly piece}}{{/nameOnly}}</h2>
           </div>
           <div class="piece-view">
-            <img src="/images/projects/{{project}}/{{piece}}" class="img-full">
+            <img data-src="/images/projects/{{project}}/{{piece}}" class="img-full">
           </div>
 
           <div class="pagination margin-top-16">
