@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5, p {
 @mixin mobile($size) {
   $breakpointMedium: $maxWidth + (2 * 32px);
   $breakpointSmall: 656px;
+  $breakpointTiny: 464px + 16px + 16px;
 
   @if $size == medium {
     @media (max-width: $breakpointMedium) {
@@ -40,5 +41,32 @@ h1, h2, h3, h4, h5, p {
     @media (max-width: $breakpointSmall) {
       @content;
     }
+  }
+  @else if $size == tiny {
+    @media (max-width: $breakpointTiny) {
+      @content;
+    }
+  }
+}
+
+@keyframes pulseOpacity {
+  0%, 100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
 }

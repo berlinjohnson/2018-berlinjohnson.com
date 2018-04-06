@@ -134,10 +134,16 @@ p {
 }
 
 section.fourOHfour {
+  h1 {
+    margin-top: 80px;
+  }
   @include mobile(small) {
     h3,
     h2 {
       text-align: center;
+    }
+    h3 {
+      margin-top: 80px !important;
     }
   }
 }
