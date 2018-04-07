@@ -27,6 +27,7 @@ nav {
       height: 4px;
       background-color: $secondary;
       margin: auto;
+      -webkit-transition: width 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
       transition: width 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
 
@@ -54,6 +55,7 @@ a.button {
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
+  -webkit-transition: background-color 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out;
 
   &:hover {

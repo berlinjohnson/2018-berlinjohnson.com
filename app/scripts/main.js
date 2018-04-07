@@ -212,16 +212,14 @@ var showPiece = function(projectName, pieceName) {
   var piece = getFullPieceName(project, pieceName);
   var pagination = getPaginationPaths();
 
+  var img = new Image();
+  $(img).on('load', function() {
+    stopLoading();
+  });
+  img.src = '/images/projects/'+projectName+'/'+piece;
+
   var pieceObj = pieceTemplate({"project": projectName, "piece": piece, "pagination": pagination});
   $('#piece').html(pieceObj);
-
-  setTimeout(function() {
-    var img = $('.img-full');
-    img.on('load', function() {
-      stopLoading();
-    });
-    img.attr('src', img.attr('data-src'));
-  }, 0);
 }
 
 var startLoading = function() {

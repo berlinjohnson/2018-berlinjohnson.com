@@ -59,13 +59,14 @@ $coverImageWidth: 464px;
       top: 0;
       margin: auto;
       animation: pulseOpacity 2s infinite ease-in;
-      z-index: 1;
+      z-index: 0;
 
       @include mobile(tiny) {
-        top: 16px;
-        width: 40px;
-        height: 40px;
-        animation: rotate 1.2s infinite ease-in-out;
+        display: none;
+        // top: 16px;
+        // width: 40px;
+        // height: 40px;
+        // animation: rotate 1.2s infinite ease-in-out;
       }
     }
   }
@@ -76,7 +77,7 @@ $coverImageWidth: 464px;
     cursor: pointer;
     background-color: white;
     position: relative;
-    z-index: 2;
+    z-index: 10;
   }
 
   .project-text {
@@ -142,9 +143,6 @@ $smallMargin: 4px;
     img {
       width: 100%;
       height: auto;
-      // max-height: 100%;
-      // max-width: 100%;
-      // cursor: pointer;
     }
   }
 }
@@ -159,6 +157,7 @@ $smallMargin: 4px;
     top: 0;
     left: 0;
     opacity: 0;
+    -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
     background-color: $white;
   }
