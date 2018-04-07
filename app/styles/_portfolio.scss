@@ -59,6 +59,7 @@ $coverImageWidth: 464px;
       top: 0;
       margin: auto;
       animation: pulseOpacity 2s infinite ease-in;
+      z-index: 1;
 
       @include mobile(tiny) {
         top: 16px;
@@ -75,6 +76,7 @@ $coverImageWidth: 464px;
     cursor: pointer;
     background-color: white;
     position: relative;
+    z-index: 2;
   }
 
   .project-text {
