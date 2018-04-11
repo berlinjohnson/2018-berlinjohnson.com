@@ -120,8 +120,9 @@ var showParent = function() {
 }
 
 var showSection = function(path) {
-  // Update url path
+  // Update url path and send pageview to GA
   history.pushState({}, '', path);
+  ga('send', 'pageview', location.pathname);
 
   var pathObj = getLocationObj(path);
 
