@@ -134,6 +134,7 @@ var showSection = function(path) {
   // Switch section shown
   $('section').addClass('is-hidden');
   if (!isValidNavigation(page, project, piece)) {
+    $('#404').attr("data-path", path);
     $('#404').removeClass('is-hidden');
   }
   else if (piece) {
@@ -146,8 +147,12 @@ var showSection = function(path) {
     watchProgressiveLoad();
   }
   else if (page == 'portfolio') {
+    $('.portfolio').attr("data-path", path);
     showPortfolio();
+  } else {
+    $('.' + page).attr("data-path", path);
   }
+
   $('section[data-path="' + path + '"]').removeClass('is-hidden');
 
   if (!piece) {
