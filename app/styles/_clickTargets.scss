@@ -168,7 +168,6 @@ a.button {
   .piece-wrapper {
     // width: 100%;
     // margin:0 auto;
-
   }
 
   p {
@@ -178,6 +177,11 @@ a.button {
     text-align: center;
     text-transform: uppercase;
   }
+}
+
+.link {
+  color: $secondary;
+  font-weight: bold;
 }
 
 section {

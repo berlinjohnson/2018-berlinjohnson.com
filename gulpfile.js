@@ -73,6 +73,7 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'images', 'downloads
             baseDir: "./build/",
             routes: {
               "/portfolio": "./build/",
+              "/downloads": "./build/",
               "/resume": "./build/",
               "/lol": "./build/",
               "/resume/lol": "./build/",

@@ -1,6 +1,6 @@
 var Handlebars = require('handlebars');
 var $ = require('jquery');
-var pages = ['about', 'portfolio', 'resume'];
+var pages = ['about', 'portfolio', 'resume', 'downloads'];
 var projects = require('./projects');
 
 var portfolioSource = $("#portfolio-template").html();
@@ -39,6 +39,7 @@ var init = function() {
   $('section').on('click', '.viewProject', navigateTo);
   $('section').on('click', '.viewPiece', navigateTo);
   $('section').on('click', '.button-back', showParent);
+  $('.track-download').on('click', trackDownload);
 
   //Arrow key navigation
   $(document).keyup(function(e) {
@@ -60,6 +61,12 @@ var init = function() {
     }
   });
 
+}
+
+var trackDownload = function(e) {
+  e.preventDefault
+  ga('send', 'event', 'DynamicWallpaper', 'download', this.text);
+  console.log('event tracked');
 }
 
 // -------------------- NAV BAR --------------------
